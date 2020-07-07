@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:startup_namer/platform/BasicMessageChannelRoute.dart';
-import 'package:startup_namer/platform/EventChannelRoute.dart';
-import 'package:startup_namer/platform/MethodChannelRoute.dart';
+import 'package:startup_namer/platform/channel/BasicMessageChannelRoute.dart';
+import 'package:startup_namer/platform/channel/EventChannelRoute.dart';
+import 'package:startup_namer/platform/channel/MethodChannelRoute.dart';
 
 class PlatFormRoute extends StatelessWidget {
   @override

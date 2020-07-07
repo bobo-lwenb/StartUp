@@ -36,7 +36,8 @@ class _HttpTestRouteState extends State<HttpTestRoute> {
                             // 创建一个HttpClient
                             HttpClient httpClient = new HttpClient();
                             // 打开http链接
-                            HttpClientRequest request = await httpClient.getUrl(Uri.parse("https://www.baidu.com"));
+                            HttpClientRequest request =
+                                await httpClient.getUrl(Uri.parse("https://www.baidu.com"));
                             // 使用iPhone的UA
                             request.headers.add("user-agent",
                                 "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1");

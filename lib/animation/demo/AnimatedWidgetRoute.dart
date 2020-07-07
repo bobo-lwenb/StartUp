@@ -13,7 +13,7 @@ class AnimatedImage extends AnimatedWidget {
     final Animation<double> animation = listenable;
     return new Center(
       child: Image.asset(
-        "imgs/avatar.png",
+        "images/avatar.png",
         width: animation.value,
         height: animation.value,
       ),
@@ -42,8 +42,10 @@ class _ScaleAnimationRouteState extends State<AnimatedWidgetTestRoute> with Sing
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedImage(
-      animation: animation,
+    return Scaffold(
+      body: AnimatedImage(
+        animation: animation,
+      ),
     );
   }
 

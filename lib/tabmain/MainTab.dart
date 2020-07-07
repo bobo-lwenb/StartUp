@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:startup_namer/tabmain/MyDrawer.dart';
 import 'package:startup_namer/tabmain/DemoTab.dart';
 import 'package:startup_namer/tabmain/MineTab.dart';
+import 'package:startup_namer/tabmain/MyDrawer.dart';
 
 final GlobalKey<ScaffoldState> mainTabKey = new GlobalKey<ScaffoldState>();
 
 class MainTab extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => MainTabState();
+  State<StatefulWidget> createState() => _MainTabState();
 }
 
-class MainTabState extends State<MainTab> {
+class _MainTabState extends State<MainTab> {
   int _tabIndex = 0;
   var _controller;
   DateTime _lastPress;
@@ -44,7 +44,7 @@ class MainTabState extends State<MainTab> {
         onWillPop: () async {
           if (_lastPress == null || DateTime.now().difference(_lastPress) > Duration(seconds: 1)) {
             _lastPress = DateTime.now();
-            Fluttertoast.showToast(msg: 'Press again to exit');
+            FlutterToast.showToast(msg: 'Press again to exit');
             return false;
           } else {
             return true;

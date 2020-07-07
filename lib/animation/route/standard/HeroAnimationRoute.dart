@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:startup_namer/animation/route/standard/HeroAnimationRouteB.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 
+import 'HeroAnimationRouteB.dart';
+
 /// 标准Hero路由动画
-class HeroAnimationRoute extends StatelessWidget {
+class HeroAnimationRoute extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _State();
+}
+
+class _State extends State<HeroAnimationRoute> {
   @override
   Widget build(BuildContext context) {
     timeDilation = 2.0;
@@ -21,9 +27,8 @@ class HeroAnimationRoute extends StatelessWidget {
             ),
           ),
           onTap: () {
-            Navigator.push(context, PageRouteBuilder(pageBuilder:
-                (BuildContext context, Animation animation,
-                    Animation secondaryAnimation) {
+            Navigator.push(context, PageRouteBuilder(
+                pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) {
               return FadeTransition(
                 opacity: animation,
                 child: Scaffold(
@@ -38,5 +43,11 @@ class HeroAnimationRoute extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    timeDilation = 1.0;
+    super.dispose();
   }
 }

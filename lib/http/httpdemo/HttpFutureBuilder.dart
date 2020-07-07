@@ -35,7 +35,8 @@ class _HttpFutureBuilderState extends State<HttpFutureBuilder> {
                 if (snapshot.hasError) {
                   return Text('${snapshot.error}');
                 } else {
-                  return Text('${snapshot.data.icon} + ${snapshot.data.title} + ${snapshot.data.statusBarColor} +${snapshot.data.hideAppBar}');
+                  return Text(
+                      '${snapshot.data.icon} + ${snapshot.data.title} + ${snapshot.data.statusBarColor} +${snapshot.data.hideAppBar}');
                 }
                 break;
               default:

@@ -57,20 +57,19 @@ class RadialExpansion extends StatelessWidget {
   }
 }
 
-class RadialExpansionDemo extends StatelessWidget {
+class RadialExpansionDemo extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _State();
+}
+
+class _State extends State<RadialExpansionDemo> {
   static const double kMinRadius = 32.0;
   static const double kMaxRadius = 128.0;
-  static const opacityCurve =
-      const Interval(0.0, 0.75, curve: Curves.fastOutSlowIn);
-
-  static RectTween _createRectTween(Rect begin, Rect end) {
-    return MaterialRectCenterArcTween(begin: begin, end: end);
-  }
+  static const opacityCurve = const Interval(0.0, 0.75, curve: Curves.fastOutSlowIn);
 
   @override
   Widget build(BuildContext context) {
     timeDilation = 5.0; // 1.0 is normal animation speed.
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Radial Transition Demo'),
@@ -99,8 +98,7 @@ class RadialExpansionDemo extends StatelessWidget {
     );
   }
 
-  Widget _buildHero(
-      BuildContext context, String imageName, String description) {
+  Widget _buildHero(BuildContext context, String imageName, String description) {
     return Container(
       width: kMinRadius * 2.0,
       height: kMinRadius * 2.0,
@@ -114,8 +112,7 @@ class RadialExpansionDemo extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 PageRouteBuilder<void>(
-                  pageBuilder: (BuildContext context,
-                      Animation<double> animation,
+                  pageBuilder: (BuildContext context, Animation<double> animation,
                       Animation<double> secondaryAnimation) {
                     return AnimatedBuilder(
                         animation: animation,
@@ -135,8 +132,7 @@ class RadialExpansionDemo extends StatelessWidget {
     );
   }
 
-  static Widget _buildPage(
-      BuildContext context, String imageName, String description) {
+  Widget _buildPage(BuildContext context, String imageName, String description) {
     return Container(
       color: Theme.of(context).canvasColor,
       child: Center(
@@ -173,5 +169,15 @@ class RadialExpansionDemo extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  RectTween _createRectTween(Rect begin, Rect end) {
+    return MaterialRectCenterArcTween(begin: begin, end: end);
+  }
+
+  @override
+  void dispose() {
+    timeDilation = 1.0;
+    super.dispose();
   }
 }

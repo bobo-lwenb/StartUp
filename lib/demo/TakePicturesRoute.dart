@@ -60,8 +60,7 @@ class _TakePictureRouteState extends State<TakePictureRoute> {
 
   Future _getPic(int index) async {
     Navigator.pop(context);
-    var image = await ImagePicker.pickImage(
-        source: index == 0 ? ImageSource.camera : ImageSource.gallery);
+    var image = await ImagePicker.pickImage(source: index == 0 ? ImageSource.camera : ImageSource.gallery);
     setState(() {
       _pics.add(image);
     });

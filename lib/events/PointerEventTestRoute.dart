@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class PointerEventTestRoute extends StatefulWidget {
   @override
-  _PointerEventTestRouteState createState() =>
-      new _PointerEventTestRouteState();
+  _PointerEventTestRouteState createState() => new _PointerEventTestRouteState();
 }
 
 class _PointerEventTestRouteState extends State<PointerEventTestRoute> {
@@ -22,8 +21,7 @@ class _PointerEventTestRouteState extends State<PointerEventTestRoute> {
             color: Colors.blue,
             width: 300.0,
             height: 150.0,
-            child: new Text(_event?.toString() ?? "",
-                style: TextStyle(color: Colors.white)),
+            child: new Text(_event?.toString() ?? "", style: TextStyle(color: Colors.white)),
           ),
         ),
         onPointerDown: (PointerEvent event) => setState(() => _event = event),

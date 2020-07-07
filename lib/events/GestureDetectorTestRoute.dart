@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 class GestureDetectorTestRoute extends StatefulWidget {
   @override
-  _GestureDetectorTestRouteState createState() =>
-      new _GestureDetectorTestRouteState();
+  _GestureDetectorTestRouteState createState() => new _GestureDetectorTestRouteState();
 }
 
 class _GestureDetectorTestRouteState extends State<GestureDetectorTestRoute> {

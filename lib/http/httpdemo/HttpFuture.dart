@@ -28,7 +28,8 @@ class _HttpFutureState extends State<HttpFuture> {
                 onTap: () {
                   fetchPost().then((CommonModel model) {
                     setState(() {
-                      showResult = '${model.icon} + ${model.title} + ${model.statusBarColor} +${model.hideAppBar}';
+                      showResult =
+                          '${model.icon} + ${model.title} + ${model.statusBarColor} +${model.hideAppBar}';
                     });
                   });
                 },

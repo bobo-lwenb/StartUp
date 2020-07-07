@@ -70,7 +70,5 @@ class DioSimpleDemo {
         print("$sent $total");
       },
     );
-
-
   }
 }

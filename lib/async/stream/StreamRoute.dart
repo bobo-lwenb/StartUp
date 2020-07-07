@@ -107,7 +107,8 @@ class _MyTransformer<S, T> implements StreamTransformer<S, T> {
 
   void _onListen() {
     // _stream 为转换之前的 Stream<S>
-    _subscription = _stream.listen(onData, onError: _controller.addError, onDone: _controller.close, cancelOnError: cancelOrError);
+    _subscription = _stream.listen(onData,
+        onError: _controller.addError, onDone: _controller.close, cancelOnError: cancelOrError);
   }
 
   void _onCancel() {
