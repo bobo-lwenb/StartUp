@@ -6,8 +6,8 @@ import 'StaggerTestRoute.dart';
 import 'demo/AnimatedBuilderRoute.dart';
 import 'demo/AnimatedWidgetRoute.dart';
 import 'demo/BaseAnimationRoute.dart';
-import 'route/custom/HeroAnimation.dart';
-import 'route/standard/HeroAnimationRoute.dart';
+import 'route/hero/custom/HeroAnimation.dart';
+import 'route/hero/standard/HeroAnimationRoute.dart';
 
 class AnimationMain extends StatefulWidget {
   @override

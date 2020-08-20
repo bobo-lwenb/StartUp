@@ -4,12 +4,12 @@ import 'CartModel.dart';
 import 'InheritedProvider.dart';
 import 'Item.dart';
 
-class ProviderRoute extends StatefulWidget {
+class LikeProviderRoute extends StatefulWidget {
   @override
   _ProviderRouteState createState() => _ProviderRouteState();
 }
 
-class _ProviderRouteState extends State<ProviderRoute> {
+class _ProviderRouteState extends State<LikeProviderRoute> {
   @override
   Widget build(BuildContext context) {
     print('_ProviderRouteState');

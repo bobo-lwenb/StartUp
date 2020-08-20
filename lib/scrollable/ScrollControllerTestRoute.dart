@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 /// 滚动控制
 class ScrollControllerTestRoute extends StatefulWidget {
   @override
-  ScrollControllerState createState() => new ScrollControllerState();
+  ScrollControllerState createState() => ScrollControllerState();
 }
 
 class ScrollControllerState extends State<ScrollControllerTestRoute> {
-  ScrollController _scrollController = new ScrollController();
+  ScrollController _scrollController = ScrollController(keepScrollOffset: true);
   bool _showToTopBtn = false;
 
   @override
@@ -29,26 +29,26 @@ class ScrollControllerState extends State<ScrollControllerTestRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('滚动控制'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('滚动控制'),
       ),
-      body: new Scrollbar(
+      body: Scrollbar(
         child: ListView.builder(
           itemCount: 100,
           itemExtent: 50.0,
           controller: _scrollController,
           itemBuilder: (context, index) {
-            return ListTile(title: new Text('$index'));
+            return ListTile(title: Text('$index'));
           },
         ),
       ),
       floatingActionButton: !_showToTopBtn
           ? null
-          : new FloatingActionButton(
+          : FloatingActionButton(
               child: Icon(Icons.arrow_upward),
               onPressed: () {
-                _scrollController.animateTo(.0, duration: Duration(microseconds: 200), curve: Curves.ease);
+                _scrollController.animateTo(.0, duration: Duration(microseconds: 500), curve: Curves.ease);
               },
             ),
     );

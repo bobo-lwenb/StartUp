@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:startup_namer/animation/route/ClipPathRoute.dart';
 
 class GridViewWidget extends StatefulWidget {
   final List<ItemData> widgets;
@@ -38,7 +39,12 @@ class _GridViewWidgetState extends State<GridViewWidget> {
       child: Text(text),
       onPressed: () {
         Navigator.of(context).push(
-          MaterialPageRoute(
+//          MaterialPageRoute(
+//            builder: (context) {
+//              return page;
+//            },
+//          ),
+          ClipPathRoute(
             builder: (context) {
               return page;
             },

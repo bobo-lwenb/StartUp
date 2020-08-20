@@ -36,7 +36,7 @@ class FlexAndExpanded extends StatelessWidget {
                   children: <Widget>[
                     _getBottomItem(Icons.star, '1200'),
                     _getBottomItem(Icons.data_usage, '3900'),
-                    _getBottomItem(Icons.account_box, '2100')
+                    _getBottomItem(Icons.account_box, '2100'),
                   ],
                 )
               ],

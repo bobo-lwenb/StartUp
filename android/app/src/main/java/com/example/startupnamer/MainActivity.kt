@@ -8,31 +8,32 @@ import android.content.IntentFilter
 import android.graphics.Color
 import android.os.BatteryManager
 import android.os.Build
-import android.os.Bundle
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import io.flutter.app.FlutterActivity
-import io.flutter.plugins.GeneratedPluginRegistrant
 import android.widget.Toast
-import io.flutter.plugin.common.*
-
+import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.plugin.common.BasicMessageChannel
+import io.flutter.plugin.common.EventChannel
+import io.flutter.plugin.common.MethodChannel
+import io.flutter.plugin.common.StandardMessageCodec
+import io.flutter.plugins.GeneratedPluginRegistrant
 
 class MainActivity : FlutterActivity() {
 
     private val CHANNEL = "samples.flutter.io/battery"
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        GeneratedPluginRegistrant.registerWith(this)
+    override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
+        GeneratedPluginRegistrant.registerWith(flutterEngine)
 
-        registerAndroidView()
+        registerAndroidView(flutterEngine)
 
         /**
          * BasicMessageChannel接收flutter的消息
          */
-        BasicMessageChannel(flutterView, "flutter_and_native_100", StandardMessageCodec.INSTANCE).setMessageHandler { message, reply ->
+        BasicMessageChannel(flutterEngine.dartExecutor, "flutter_and_native_100", StandardMessageCodec.INSTANCE).setMessageHandler { message, reply ->
             val arguments: Map<String, String> = message as Map<String, String>
             when (arguments["method"]) {
                 "test" -> {
@@ -50,14 +51,14 @@ class MainActivity : FlutterActivity() {
          * BasicMessageChannel主动向flutter发送消息
          */
         val map = mapOf("message" to "android 主动调用 flutter test 方法", "code" to 200)
-        BasicMessageChannel(flutterView, "flutter_and_native_100", StandardMessageCodec.INSTANCE).send(map) { reply ->
+        BasicMessageChannel(flutterEngine.dartExecutor, "flutter_and_native_100", StandardMessageCodec.INSTANCE).send(map) { reply ->
             println(reply)
         }
 
         /**
          * MethodChannel接收flutter的消息
          */
-        MethodChannel(flutterView, CHANNEL).setMethodCallHandler { methodCall, result ->
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { methodCall, result ->
             if (methodCall.method == "getBatteryLevel") {
                 val batteryLevel = getBatteryLevel()
                 if (batteryLevel != -1) {
@@ -73,7 +74,7 @@ class MainActivity : FlutterActivity() {
         /**
          * MethodChannel主动向flutter发送消息
          */
-        MethodChannel(flutterView, "").invokeMethod("getContent", "arguments", object : MethodChannel.Result {
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "").invokeMethod("getContent", "arguments", object : MethodChannel.Result {
 
             override fun success(result: Any?) {
 
@@ -91,7 +92,7 @@ class MainActivity : FlutterActivity() {
         /**
          * EventChannel只能向flutter发送消息
          */
-        EventChannel(flutterView, "samples.flutter.io/EventChannel").setStreamHandler(object : EventChannel.StreamHandler {
+        EventChannel(flutterEngine.dartExecutor, "samples.flutter.io/EventChannel").setStreamHandler(object : EventChannel.StreamHandler {
             override fun onListen(arguments: Any?, events: EventChannel.EventSink?) {
 
             }
@@ -102,7 +103,7 @@ class MainActivity : FlutterActivity() {
         })
     }
 
-    private fun registerAndroidView() {
+    private fun registerAndroidView(flutterEngine: FlutterEngine) {
         val textView = TextView(this)
         val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
         textView.layoutParams = params
@@ -110,8 +111,8 @@ class MainActivity : FlutterActivity() {
         textView.gravity = Gravity.CENTER_HORIZONTAL
         textView.text = "Android View"
 
-        val registry = registrarFor("111")
-        registry.platformViewRegistry().registerViewFactory("android_view", AndroidViewDemo(StandardMessageCodec(), textView))
+        val registry = flutterEngine.platformViewsController.registry
+        registry.registerViewFactory("android_view", AndroidViewDemo(StandardMessageCodec(), textView))
     }
 
     @TargetApi(Build.VERSION_CODES.ECLAIR)

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:startup_namer/ui/DemoLayoutRoute.dart';
 import 'package:startup_namer/ui/Flex_Expanded.dart';
+import 'package:startup_namer/ui/PageViewRoute.dart';
+import 'package:startup_namer/ui/Wrap_Flow_Demo.dart';
 import 'package:startup_namer/ui/gradient_button/GradientButtonRoute.dart';
 import 'package:startup_namer/ui/textfeild/login.dart';
 import 'package:startup_namer/utils/GridViewWidget.dart';
@@ -27,6 +29,8 @@ class _UIMainState extends State<UIMain> {
     list.add(ItemData('布局Demo', DemoLayoutRoute()));
     list.add(ItemData('Dismissible左右滑动操作', DismissibleRoute()));
     list.add(ItemData('按钮背景色渐变', GradientButtonRoute()));
+    list.add(ItemData('流式布局', WrapFlowDemo()));
+    list.add(ItemData('PageView的使用', PageViewRoute()));
   }
 
   @override

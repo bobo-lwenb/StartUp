@@ -1,17 +1,37 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:startup_namer/state/how_provider_use/ChangeNotifierSecondRoute.dart';
 
-class ProviderRoute extends StatelessWidget {
+class ChangeNotifierProviderRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => Counter()),
-      ],
-      child: MainProvider(),
+//    return MultiProvider(
+//      providers: [
+//        ChangeNotifierProvider(create: (_) => Counter()),
+//      ],
+//      child: MainProvider(),
+//    );
+    return ChangeNotifierProvider<Counter>(
+      create: (_) => Counter(),
+      child: DemoApp(),
+//      child: MainProvider(),
+    );
+//    return ChangeNotifierProvider.value(
+//      value: Counter(),
+//      child: MainProvider(),
+//    );
+  }
+}
+
+class DemoApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MainProvider(),
     );
   }
+
 }
 
 class MainProvider extends StatelessWidget {
@@ -19,7 +39,16 @@ class MainProvider extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Provider'),
+        title: Text('ChangeNotifierProvider'),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.add_box),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ChangeNotifierSecondRoute();
+                }));
+              }),
+        ],
       ),
       body: Center(
         child: Column(
