@@ -5,6 +5,8 @@ import 'package:startup_namer/state/how_provider_use/ListenableProviderRoute.dar
 import 'package:startup_namer/state/how_provider_use/ProviderRoute.dart';
 import 'package:startup_namer/state/how_provider_use/StreamProviderRoute.dart';
 import 'package:startup_namer/state/how_provider_use/ValueListenableProviderRoute.dart';
+import 'package:startup_namer/state/inherited_model/InheritedModelRoute.dart';
+import 'package:startup_namer/state/listenable/ValueListenableBuilderRoute.dart';
 import 'package:startup_namer/utils/GridViewWidget.dart';
 
 import 'lifecycle/StateLifecycleTest.dart';
@@ -25,12 +27,14 @@ class _StateMainState extends State<StateMain> {
     list.add(ItemData('State生命周期', StateLifecycle()));
     list.add(ItemData('WidgetsBindingObserver', WidgetsBindingRoute()));
     list.add(ItemData('模仿Provider实现购物车例子', LikeProviderRoute()));
+    list.add(ItemData('InheritedModel', InheritedModelRoute()));
     list.add(ItemData('Provider', ProviderRoute()));
     list.add(ItemData('ListenableProvider', ListenableProviderRoute()));
     list.add(ItemData('ChangeNotifierProvider', ChangeNotifierProviderRoute()));
     list.add(ItemData('ValueListenableProvider', ValueListenableProviderRoute()));
     list.add(ItemData('FutureProvider', FutureProviderRoute()));
     list.add(ItemData('StreamProvider', StreamProviderRoute()));
+    list.add(ItemData('ValueListenableBuilder', ValueListenableBuilderRoute()));
   }
 
   @override

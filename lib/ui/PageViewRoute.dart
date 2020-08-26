@@ -48,31 +48,41 @@ class _PageViewState extends State {
 
   @override
   Widget build(BuildContext context) {
+    Widget _child = Column(
+      children: [
+        Container(
+          height: 200.0,
+          child: _buildCommonPageView(),
+        ),
+        Placeholder(
+          fallbackHeight: 10.0,
+        ),
+        Container(
+          height: 200.0,
+          child: _buildCustomPageView(),
+        ),
+        Placeholder(
+          fallbackHeight: 10.0,
+        ),
+        Container(
+          height: 200.0,
+          child: _buildFurtherPageView(),
+        ),
+        Placeholder(
+          fallbackHeight: 10.0,
+        ),
+        Container(
+          height: 200.0,
+          child: _buildSpecialPageView(),
+        ),
+      ],
+    );
     return Scaffold(
       appBar: AppBar(
         title: Text('PageView'),
       ),
-      body: Column(
-        children: [
-          Container(
-            height: 200.0,
-            child: _buildCommonPageView(),
-          ),
-          Placeholder(
-            fallbackHeight: 10.0,
-          ),
-          Container(
-            height: 200.0,
-            child: _buildFurtherPageView(),
-          ),
-          Placeholder(
-            fallbackHeight: 10.0,
-          ),
-          Container(
-            height: 200.0,
-            child: _buildSpecialPageView(),
-          ),
-        ],
+      body: SingleChildScrollView(
+        child: _child,
       ),
     );
   }
@@ -81,6 +91,7 @@ class _PageViewState extends State {
   void dispose() {
     super.dispose();
     _controller.dispose();
+    _controller1.dispose();
   }
 
   Widget _buildCommonPageView() {
@@ -94,6 +105,24 @@ class _PageViewState extends State {
         _pageList[2],
         _pageList[3],
       ],
+    );
+  }
+
+  Widget _buildCustomPageView() {
+    return PageView.custom(
+      controller: _controller,
+      childrenDelegate: SliverChildBuilderDelegate(
+        (context, index) {
+          return Center(
+            child: Text(
+              '$index',
+              style: TextStyle(color: Colors.red, fontSize: 30),
+            ),
+          );
+        },
+        childCount: 5,
+      ),
+      onPageChanged: (index) {},
     );
   }
 
@@ -119,7 +148,7 @@ class _PageViewState extends State {
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
                 _pageList.length,
-                    (index) {
+                (index) {
                   return Container(
                     margin: EdgeInsets.symmetric(horizontal: 5.0),
                     width: 10.0,
@@ -157,22 +186,19 @@ class _PageViewState extends State {
       var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
       var currTrans = 200 * (1 - currScale) / 2;
 
-      matrix4 = Matrix4.diagonal3Values(1.0, currScale, 1.0)
-        ..setTranslationRaw(0.0, currTrans, 0.0);
+      matrix4 = Matrix4.diagonal3Values(1.0, currScale, 1.0)..setTranslationRaw(0.0, currTrans, 0.0);
     } else if (index == _currPageValue.floor() + 1) {
       //右边的item
       var currScale = _scaleFactor + (_currPageValue - index + 1) * (1 - _scaleFactor);
       var currTrans = 200 * (1 - currScale) / 2;
 
-      matrix4 = Matrix4.diagonal3Values(1.0, currScale, 1.0)
-        ..setTranslationRaw(0.0, currTrans, 0.0);
+      matrix4 = Matrix4.diagonal3Values(1.0, currScale, 1.0)..setTranslationRaw(0.0, currTrans, 0.0);
     } else if (index == _currPageValue.floor() - 1) {
       //左边
       var currScale = 1 - (_currPageValue - index) * (1 - _scaleFactor);
       var currTrans = 200 * (1 - currScale) / 2;
 
-      matrix4 = Matrix4.diagonal3Values(1.0, currScale, 1.0)
-        ..setTranslationRaw(0.0, currTrans, 0.0);
+      matrix4 = Matrix4.diagonal3Values(1.0, currScale, 1.0)..setTranslationRaw(0.0, currTrans, 0.0);
     } else {
       //其他，不在屏幕显示的item
       matrix4 = Matrix4.diagonal3Values(1.0, _scaleFactor, 1.0)
@@ -180,17 +206,16 @@ class _PageViewState extends State {
     }
 
     return Transform(
-        transform: matrix4,
-        child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12),
-              image: DecorationImage(
-                  image: NetworkImage(_imgPath), fit: BoxFit.fill),
-            ),
+      transform: matrix4,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            image: DecorationImage(image: NetworkImage(_imgPath), fit: BoxFit.fill),
           ),
         ),
+      ),
     );
   }
 }

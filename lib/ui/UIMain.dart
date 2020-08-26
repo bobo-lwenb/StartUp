@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:startup_namer/ui/DemoLayoutRoute.dart';
+import 'package:startup_namer/ui/DraggableRoute.dart';
+import 'package:startup_namer/ui/FilterRoute.dart';
 import 'package:startup_namer/ui/Flex_Expanded.dart';
 import 'package:startup_namer/ui/PageViewRoute.dart';
 import 'package:startup_namer/ui/Wrap_Flow_Demo.dart';
@@ -31,6 +33,8 @@ class _UIMainState extends State<UIMain> {
     list.add(ItemData('按钮背景色渐变', GradientButtonRoute()));
     list.add(ItemData('流式布局', WrapFlowDemo()));
     list.add(ItemData('PageView的使用', PageViewRoute()));
+    list.add(ItemData('BackdropFilter和ImageFilter', FilterRoute()));
+    list.add(ItemData('Draggable、DragTarget', DraggableRoute()));
   }
 
   @override

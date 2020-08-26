@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:startup_namer/animation/AnimatedContainerRoute.dart';
+import 'package:startup_namer/animation/demo/AnimatedOpacityRoute.dart';
+import 'package:startup_namer/animation/demo/TweenAnimationBuilderRoute.dart';
 import 'package:startup_namer/utils/GridViewWidget.dart';
 
 import 'ScaleAnimationTestRoute.dart';
@@ -27,6 +30,9 @@ class _AnimationMainState extends State<AnimationMain> {
     list.add(ItemData('标准Hero动画', HeroAnimationRoute()));
     list.add(ItemData('自定义Hero动画', RadialExpansionDemo()));
     list.add(ItemData('交错动画', StaggerTestRoute()));
+    list.add(ItemData('AnimatedOpacity', AnimatedOpacityRoute()));
+    list.add(ItemData('TweenAnimationBuilder', TweenAnimationBuilderRoute()));
+    list.add(ItemData('AnimatedContainer', AnimatedContainerRoute()));
   }
 
   @override

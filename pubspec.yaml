@@ -61,6 +61,7 @@ flutter:
     - images/flower.jpg
     - images/avatar.png
     - images/lake.jpg
+    - images/beauty.jpg
     - assets/config.json
 
   # An image asset can refer to one or more resolution-specific "variants", see

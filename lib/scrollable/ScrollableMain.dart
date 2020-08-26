@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:startup_namer/scrollable/AnimatedListRoute.dart';
 import 'package:startup_namer/scrollable/ExpansionTileRoute.dart';
 import 'package:startup_namer/scrollable/GridViewRoute.dart';
 import 'package:startup_namer/scrollable/InfiniteListView.dart';
@@ -26,8 +27,9 @@ class _ScrollableMainState extends State<ScrollableMain> {
     list.add(ItemData('无限加载ListView', InfiniteListView()));
     list.add(ItemData('GridView组件演示上拉下拉刷新', GridViewRoute()));
     list.add(ItemData('ExpansionTile演示', ExpansionTileRoute()));
-    list.add(ItemData('Sliver演示', CustomScrollViewRoute()));
     list.add(ItemData('ScrollController用法', ScrollControllerTestRoute()));
+    list.add(ItemData('Sliver演示', CustomScrollViewRoute()));
+    list.add(ItemData('AnimatedList', AnimatedListRoute()));
   }
 
   @override
