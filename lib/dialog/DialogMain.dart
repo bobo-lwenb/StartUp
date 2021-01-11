@@ -9,7 +9,7 @@ class DialogMain extends StatefulWidget {
 }
 
 class _DialogMainState extends State<DialogMain> {
-  List<ItemData> list = List();
+  List<ItemData> list = List.empty(growable: true);
 
   @override
   void initState() {

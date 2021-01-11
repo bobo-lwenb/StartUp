@@ -20,7 +20,7 @@ class MineTab extends StatefulWidget {
 }
 
 class MineTebState extends State {
-  List<ItemData> list = List();
+  List<ItemData> list = List.empty(growable: true);
 
   @override
   void initState() {

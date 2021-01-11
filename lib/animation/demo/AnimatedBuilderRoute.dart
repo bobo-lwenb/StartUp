@@ -31,7 +31,7 @@ class _AnimationBuilderRouteState extends State<AnimationBuilderRoute> with Sing
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ScaleAnimation'),
+        title: Text('AnimatedBuilder'),
       ),
       body: Center(
         // AnimatedBuilder不仅可以从动画中分离出widget，也能把渲染过程抽象出来

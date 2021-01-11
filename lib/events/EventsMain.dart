@@ -15,7 +15,7 @@ class EventsMain extends StatefulWidget {
 }
 
 class _EventsMainState extends State<EventsMain> {
-  List<ItemData> list = List();
+  List<ItemData> list = List.empty(growable: true);
 
   @override
   void initState() {

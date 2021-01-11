@@ -214,7 +214,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
     bool barrierDismissible = true,
     WidgetBuilder builder,
   }) {
-    final ThemeData theme = Theme.of(context, shadowThemeOnly: true);
+    final ThemeData theme = Theme.of(context);
     return showGeneralDialog<T>(
       context: context,
       pageBuilder:

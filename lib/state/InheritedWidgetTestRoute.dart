@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class InheritedWidgetTestRoute extends StatefulWidget {
   @override
-  _InheritedWidgetTestRouteState createState() => new _InheritedWidgetTestRouteState();
+  _InheritedWidgetTestRouteState createState() => _InheritedWidgetTestRouteState();
 }
 
 class _InheritedWidgetTestRouteState extends State<InheritedWidgetTestRoute> {
@@ -10,14 +10,14 @@ class _InheritedWidgetTestRouteState extends State<InheritedWidgetTestRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('InheritedWidget'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('InheritedWidget'),
       ),
-      body: new Center(
-        child: new ShareDataWidget(
+      body: Center(
+        child: ShareDataWidget(
           data: count,
-          child: new Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Padding(
@@ -25,7 +25,7 @@ class _InheritedWidgetTestRouteState extends State<InheritedWidgetTestRoute> {
                 child: _TestWidget(), // setState会调用build方法，而此时会重新new一个_TestWidget，无法做到缓存，将更新整个子树
               ),
               RaisedButton(
-                child: new Text('Increment'),
+                child: Text('Increment'),
                 onPressed: () => setState(() => ++count),
               ),
             ],
@@ -38,15 +38,15 @@ class _InheritedWidgetTestRouteState extends State<InheritedWidgetTestRoute> {
 
 class _TestWidget extends StatefulWidget {
   @override
-  _TestWidgetState createState() => new _TestWidgetState();
+  _TestWidgetState createState() => _TestWidgetState();
 }
 
 class _TestWidgetState extends State<_TestWidget> {
   @override
   Widget build(BuildContext context) {
-    return new Text(
+    return Text(
       /// 使用InheritedWidget中的共享数据
-      ShareDataWidget.of(context).data.toString(),
+      ShareDataWidget.of(context, true).data.toString(),
     );
   }
 
@@ -75,10 +75,13 @@ class ShareDataWidget extends InheritedWidget {
   }
 
   /// 定义一个便捷方法，方便子树中的widget获取共享数据
-  static ShareDataWidget of(BuildContext context) {
-    // 有注册关系，所以子孙组件的didChangeDependencies()方法和build()方法都会调用
-    return context.inheritFromWidgetOfExactType(ShareDataWidget);
-    // 没有注册关系，所以之后当InheritedWidget发生变化时，就不会更新相应的子孙Widget。
-//    return context.ancestorInheritedElementForWidgetOfExactType(ShareDataWidget).widget;
+  static ShareDataWidget of(BuildContext context, bool rebuild) {
+    if (rebuild) {
+      // 有注册关系，所以子孙组件的didChangeDependencies()方法和build()方法都会调用
+      return context.dependOnInheritedWidgetOfExactType<ShareDataWidget>(aspect: ShareDataWidget);
+    } else {
+      // 没有注册关系，所以之后当InheritedWidget发生变化时，就不会更新相应的子孙Widget。
+      return context.getElementForInheritedWidgetOfExactType<ShareDataWidget>().widget;
+    }
   }
 }

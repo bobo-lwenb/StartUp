@@ -17,6 +17,9 @@ class _MyListViewState extends State<MyListView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("ListView.custom的使用"),
+      ),
       body: SafeArea(
         child: ListView.custom(
           childrenDelegate: SliverChildBuilderDelegate(
@@ -66,6 +69,11 @@ class _KeepAliveState extends State<KeepAlive> with AutomaticKeepAliveClientMixi
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return Text(widget.data);
+    return Container(
+      height: 44,
+      child: Center(
+        child: Text(widget.data),
+      ),
+    );
   }
 }

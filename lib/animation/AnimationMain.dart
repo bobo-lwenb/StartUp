@@ -18,7 +18,7 @@ class AnimationMain extends StatefulWidget {
 }
 
 class _AnimationMainState extends State<AnimationMain> {
-  List<ItemData> list = List();
+  List<ItemData> list = List.empty(growable: true);
 
   @override
   void initState() {

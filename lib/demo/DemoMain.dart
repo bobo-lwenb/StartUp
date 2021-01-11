@@ -9,7 +9,7 @@ class DemoMain extends StatefulWidget {
 }
 
 class _DemoMainState extends State<DemoMain> {
-  List<ItemData> list = List();
+  List<ItemData> list = List.empty(growable: true);
 
   @override
   void initState() {

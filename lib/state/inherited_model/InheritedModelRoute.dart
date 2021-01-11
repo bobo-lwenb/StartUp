@@ -50,14 +50,16 @@ class _State extends State<Inherited> {
         ),
       ],
     );
-    return InheritedModelDemo(
-      num1: _num1,
-      num2: _num2,
-      child: Column(
-        children: [
-          one,
-          two,
-        ],
+    return Center(
+      child: InheritedModelDemo(
+        num1: _num1,
+        num2: _num2,
+        child: Column(
+          children: [
+            one,
+            two,
+          ],
+        ),
       ),
     );
   }
@@ -71,6 +73,7 @@ class Counter1 extends StatefulWidget {
 class _State1 extends State<Counter1> {
   @override
   Widget build(BuildContext context) {
+    print('Counter1');
     InheritedModelDemo model = InheritedModelDemo.of(context, 'num1');
     return Text('${model.num1}');
   }
@@ -90,6 +93,7 @@ class Counter2 extends StatefulWidget {
 class _State2 extends State<Counter2> {
   @override
   Widget build(BuildContext context) {
+    print('Counter2');
     InheritedModelDemo model = InheritedModelDemo.of(context, 'num2');
     return Text('${model.num2}');
   }

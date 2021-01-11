@@ -33,6 +33,21 @@ class MyApp extends StatelessWidget {
         return null;
       },
       home: MainTab(),
+      builder: (context, child) {
+        return Scaffold(
+          body: GestureDetector(
+            onTap: () {
+              FocusScopeNode currFocus = FocusScope.of(context);
+              if (!currFocus.hasPrimaryFocus && currFocus.focusedChild != null) {
+                FocusManager.instance.primaryFocus.unfocus();
+              }
+            },
+            child: child,
+          ),
+        );
+      },
     );
   }
 }
+
+

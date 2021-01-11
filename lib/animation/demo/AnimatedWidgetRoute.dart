@@ -43,6 +43,9 @@ class _ScaleAnimationRouteState extends State<AnimatedWidgetTestRoute> with Sing
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text("AnimatedWidget"),
+      ),
       body: AnimatedImage(
         animation: animation,
       ),

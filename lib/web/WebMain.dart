@@ -9,7 +9,7 @@ class WebMain extends StatefulWidget {
 }
 
 class _WebMainState extends State<WebMain> {
-  List<ItemData> list = List();
+  List<ItemData> list = List.empty(growable: true);
 
   @override
   void initState() {

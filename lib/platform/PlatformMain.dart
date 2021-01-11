@@ -10,7 +10,7 @@ class PlatformMain extends StatefulWidget {
 }
 
 class _PlatformMainState extends State<PlatformMain> {
-  List<ItemData> list = List();
+  List<ItemData> list = List.empty(growable: true);
 
   @override
   void initState() {

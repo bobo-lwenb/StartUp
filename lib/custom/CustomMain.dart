@@ -14,7 +14,7 @@ class CustomMain extends StatefulWidget {
 }
 
 class _CustomMainState extends State<CustomMain> {
-  List<ItemData> list = List();
+  List<ItemData> list = List.empty(growable: true);
 
   @override
   void initState() {

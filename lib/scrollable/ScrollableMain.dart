@@ -5,6 +5,7 @@ import 'package:startup_namer/scrollable/GridViewRoute.dart';
 import 'package:startup_namer/scrollable/InfiniteListView.dart';
 import 'package:startup_namer/scrollable/ListViewCustomRoute.dart';
 import 'package:startup_namer/scrollable/ListViewTestRoute.dart';
+import 'package:startup_namer/scrollable/ReorderableListViewRoute.dart';
 import 'package:startup_namer/scrollable/ScrollControllerTestRoute.dart';
 import 'package:startup_namer/scrollable/SingleChildScrollViewRoute.dart';
 import 'package:startup_namer/scrollable/SliverRoute.dart';
@@ -16,7 +17,7 @@ class ScrollableMain extends StatefulWidget {
 }
 
 class _ScrollableMainState extends State<ScrollableMain> {
-  List<ItemData> list = List();
+  List<ItemData> list = List.empty(growable: true);
 
   @override
   void initState() {
@@ -30,6 +31,7 @@ class _ScrollableMainState extends State<ScrollableMain> {
     list.add(ItemData('ScrollController用法', ScrollControllerTestRoute()));
     list.add(ItemData('Sliver演示', CustomScrollViewRoute()));
     list.add(ItemData('AnimatedList', AnimatedListRoute()));
+    list.add(ItemData('ReorderableListView', ReorderableListViewRoute()));
   }
 
   @override

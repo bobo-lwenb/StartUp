@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:startup_namer/state/how_provider_use/ChangeNotifierSecondRoute.dart';
+import 'package:startup_namer/state/how_provider_use/ListenableProviderRoute.dart';
 
 class ChangeNotifierProviderRoute extends StatelessWidget {
   @override
@@ -31,7 +32,6 @@ class DemoApp extends StatelessWidget {
       home: MainProvider(),
     );
   }
-
 }
 
 class MainProvider extends StatelessWidget {
@@ -56,6 +56,12 @@ class MainProvider extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
+            Consumer<Counter>(
+              builder: (context, value, child) {
+                print('Consumer');
+                return Text('${value.count}');
+              },
+            ),
             const Count(),
           ],
         ),
@@ -74,10 +80,12 @@ class Count extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      '${context.watch<Counter>().count}',
-      style: Theme.of(context).textTheme.headline4,
-    );
+    // return Text(
+    //   '${context.watch<Counter>().count}',
+    //   style: Theme.of(context).textTheme.headline4,
+    // );
+    print('Count');
+    return Text('qweqwr');
   }
 }
 

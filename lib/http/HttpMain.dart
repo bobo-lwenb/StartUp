@@ -11,7 +11,7 @@ class HttpMain extends StatefulWidget {
 }
 
 class _HttpMainState extends State<HttpMain> {
-  List<ItemData> list = List();
+  List<ItemData> list = List.empty(growable: true);
 
   @override
   void initState() {
