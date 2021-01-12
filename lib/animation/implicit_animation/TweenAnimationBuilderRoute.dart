@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+/// TweenAnimationBuilder 是做隐式动画（补间动画）的万能方法
+/// 要注意的是 tween 属性的 begin 值只有在一开始的时候起作用，然后到 end 值
+/// 动画结束之后的都是由当前值变化到新值
 class TweenAnimationBuilderRoute extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _State();
