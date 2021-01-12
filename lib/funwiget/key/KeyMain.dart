@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:startup_namer/funwiget/key/exercise_key/ExerciseKeyRoute.dart';
+import 'package:startup_namer/funwiget/key/exercise_key/sort_list.dart';
 import 'package:startup_namer/funwiget/key/global_key/GlobalKeyRoute.dart';
 import 'package:startup_namer/funwiget/key/local_key/KeyExampleRoute.dart';
 import 'package:startup_namer/funwiget/key/local_key/ObjectKeyRoute.dart';
@@ -28,7 +29,8 @@ class _KeyMainState extends State<KeyMain> {
     listLocal.add(ItemData("Key的例子", KeyExampleRoute()));
     listGlobal.add(ItemData("GlobalKey", GlobalKeyRoute()));
     listGlobal.add(ItemData("GlobalKey", GlobalKeyRoute()));
-    listExercise.add(ItemData("Key的练习Demo", ExerciseKeyRoute()));
+    listExercise.add(ItemData("拖动列表实现1", ExerciseKeyRoute()));
+    listExercise.add(ItemData("拖动列表实现2", SortList()));
   }
 
   @override
