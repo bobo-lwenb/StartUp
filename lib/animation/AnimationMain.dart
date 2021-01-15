@@ -13,9 +13,9 @@ import 'explicit_animation/animated_builder_1.dart';
 import 'explicit_animation/animated_widget.dart';
 import 'explicit_animation/base_animation_1.dart';
 import 'explicit_animation/staggered_animation_2.dart';
+import 'hero/custom/HeroAnimation.dart';
+import 'hero/standard/HeroAnimationRoute.dart';
 import 'implicit_animation/flip_counter.dart';
-import 'route/hero/custom/HeroAnimation.dart';
-import 'route/hero/standard/HeroAnimationRoute.dart';
 
 class AnimationMain extends StatefulWidget {
   @override
