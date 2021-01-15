@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:startup_namer/animation/AnimationMain.dart';
 import 'package:startup_namer/async/AsyncMain.dart';
-import 'package:startup_namer/custom/CustomMain.dart';
+import 'package:startup_namer/custom/custom_view_main.dart';
 import 'package:startup_namer/demo/DemoMain.dart';
 import 'package:startup_namer/dialog/DialogMain.dart';
 import 'package:startup_namer/events/EventsMain.dart';

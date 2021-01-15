@@ -3,12 +3,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 /// 自定义paint画棋盘
-class CustomPaintRoute extends StatelessWidget {
+class ChessBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('CustomPaint'),
+          title: Text('棋盘'),
         ),
         body: Center(
           child: CustomPaint(

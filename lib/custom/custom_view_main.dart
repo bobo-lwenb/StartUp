@@ -4,7 +4,8 @@ import 'package:startup_namer/custom/FlowPopCircleMenu.dart';
 import 'package:startup_namer/custom/FlowPopMenu.dart';
 import 'package:startup_namer/utils/GridViewWidget.dart';
 
-import 'CustomPaintRoute.dart';
+import 'custom_painter_1.dart';
+import 'custom_painter_2.dart';
 import 'GradientCircularProgressRoute.dart';
 import 'TurnBoxTestRoute.dart';
 
@@ -19,8 +20,9 @@ class _CustomMainState extends State<CustomMain> {
   @override
   void initState() {
     super.initState();
+    list.add(ItemData('CustomPainter画棋盘', ChessBoard()));
+    list.add(ItemData('CustomPainter画雪人', SnowMan()));
     list.add(ItemData('旋转动画及自定义控件', TurnBoxTestRoute()));
-    list.add(ItemData('自定义paint画棋盘', CustomPaintRoute()));
     list.add(ItemData('自定义圆形进度圈', GradientCircularProgressRoute()));
     list.add(ItemData('简单自定义Scrollbar', CustomScrollbar()));
     list.add(ItemData('自定义Flow菜单', FlowPopMenuRoute()));
@@ -31,7 +33,7 @@ class _CustomMainState extends State<CustomMain> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('自定义组件'),
+        title: const Text('自定义Widget'),
       ),
       body: GridViewWidget(widgets: list),
     );
