@@ -38,16 +38,16 @@ class _GridViewWidgetState extends State<GridViewWidget> {
       child: Text(text),
       onPressed: () {
         Navigator.of(context).push(
-//          MaterialPageRoute(
-//            builder: (context) {
-//              return page;
-//            },
-//          ),
-          ClipPathRoute(
-            builder: (context) {
-              return page;
-            },
-          ),
+         MaterialPageRoute(
+           builder: (context) {
+             return page;
+           },
+         ),
+          // ClipPathRoute(
+          //   builder: (context) {
+          //     return page;
+          //   },
+          // ),
         );
       },
     );

@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-/// Animation基本构成
-class BaseAnimationRoute extends StatefulWidget {
+/// 显式动画的基本使用1
+class BaseAnimation1 extends StatefulWidget {
   @override
-  _BaseAnimationRouteState createState() => new _BaseAnimationRouteState();
+  _BaseAnimation1State createState() => new _BaseAnimation1State();
 }
 
 // 需要继承TickerProvider，如果有多个AnimationController，则应该使用TickerProviderStateMixin。
-class _BaseAnimationRouteState extends State<BaseAnimationRoute> with SingleTickerProviderStateMixin {
+class _BaseAnimation1State extends State<BaseAnimation1> with SingleTickerProviderStateMixin {
   // 用于保存动画的插值和状态
   Animation<double> animation;
 

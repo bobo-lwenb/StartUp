@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 /// AnimatedBuilder正是将渲染逻辑分离出来
-class AnimationBuilderRoute extends StatefulWidget {
+class AnimatedBuilder1 extends StatefulWidget {
   @override
-  _AnimationBuilderRouteState createState() => new _AnimationBuilderRouteState();
+  _AnimationBuilder1State createState() => new _AnimationBuilder1State();
 }
 
 /// 需要继承TickerProvider，如果有多个AnimationController，则应该使用TickerProviderStateMixin。
-class _AnimationBuilderRouteState extends State<AnimationBuilderRoute> with SingleTickerProviderStateMixin {
+class _AnimationBuilder1State extends State<AnimatedBuilder1> with SingleTickerProviderStateMixin {
   Animation<double> animation;
   AnimationController controller;
 
@@ -31,13 +31,12 @@ class _AnimationBuilderRouteState extends State<AnimationBuilderRoute> with Sing
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AnimatedBuilder'),
+        title: Text('AnimatedBuilder1'),
       ),
       body: Center(
         // AnimatedBuilder不仅可以从动画中分离出widget，也能把渲染过程抽象出来
         child: AnimatedBuilder(
           animation: animation,
-          child: Image.asset('./images/flower.jpg'),
           builder: (BuildContext ctx, Widget child) {
             return Center(
               child: Container(
@@ -47,6 +46,7 @@ class _AnimationBuilderRouteState extends State<AnimationBuilderRoute> with Sing
               ),
             );
           },
+          child: Image.asset('./images/flower.jpg'),
         ),
       ),
     );

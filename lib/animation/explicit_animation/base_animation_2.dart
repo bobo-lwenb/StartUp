@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-class ScaleAnimation extends StatefulWidget {
+/// 显式动画的基本使用2
+class BaseAnimation2 extends StatefulWidget {
   @override
-  _ScaleAnimationState createState() => new _ScaleAnimationState();
+  _BaseAnimation2State createState() => _BaseAnimation2State();
 }
 
-class _ScaleAnimationState extends State<ScaleAnimation> with SingleTickerProviderStateMixin {
+class _BaseAnimation2State extends State<BaseAnimation2> with SingleTickerProviderStateMixin {
   Animation<double> animation;
   AnimationController controller;
   double animationValue;
