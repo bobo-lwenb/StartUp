@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:startup_namer/setting/DemoSetting.dart';
 import 'package:startup_namer/tabmain/MainTab.dart';
 
@@ -10,23 +7,30 @@ class DemoTab extends StatefulWidget {
   State<StatefulWidget> createState() => DemoTabState();
 }
 
-class DemoTabState extends State<DemoTab> {
+class DemoTabState extends State<DemoTab> with SingleTickerProviderStateMixin {
+  TabController _tabController;
+  final List<String> _title = ["Flutter", "Dart", "Kotlin"];
+
   @override
   void initState() {
+    _tabController = TabController(length: _title.length, vsync: this);
     super.initState();
   }
 
   @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    print('_MyHomePageState');
     return Scaffold(
       appBar: AppBar(
         leading: Builder(builder: (context) {
           return IconButton(
             icon: Icon(Icons.dehaze, color: Colors.white),
-            onPressed: () {
-              mainTabKey.currentState.openDrawer();
-            },
+            onPressed: () => mainTabKey.currentState.openDrawer(),
           );
         }),
         title: Text('Demo'),
@@ -40,16 +44,20 @@ class DemoTabState extends State<DemoTab> {
             },
           ),
         ],
+        bottom: TabBar(
+          tabs: _title.map((e) => Tab(text: e)).toList(),
+          controller: _tabController,
+          indicatorColor: Colors.white,
+        ),
       ),
-      body: ListView(
-        children: <Widget>[],
+      body: TabBarView(
+        controller: this._tabController,
+        children: <Widget>[
+          Center(child: Text("Flutter")),
+          Center(child: Text("Dart")),
+          Center(child: Text("Kotlin")),
+        ],
       ),
     );
-  }
-
-  Future<bool> _getState() async {
-    SharedPreferences _sp = await SharedPreferences.getInstance();
-    bool state = _sp.getBool('route_state');
-    return state == null ? false : state;
   }
 }

@@ -55,8 +55,8 @@ class _MainTabState extends State<MainTab> {
         currentIndex: _tabIndex,
         backgroundColor: Colors.white,
         onTap: (index) {
+          _controller.jumpToPage(index);
           setState(() {
-            _controller.jumpToPage(index);
             _tabIndex = index;
           });
         },
