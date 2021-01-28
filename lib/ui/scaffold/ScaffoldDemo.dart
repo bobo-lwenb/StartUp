@@ -9,7 +9,8 @@ class ScaffoldDemo extends StatefulWidget {
   _ScaffoldDemoState createState() => _ScaffoldDemoState();
 }
 
-class _ScaffoldDemoState extends State<ScaffoldDemo> with SingleTickerProviderStateMixin {
+class _ScaffoldDemoState extends State<ScaffoldDemo>
+    with SingleTickerProviderStateMixin {
   PageController _controller;
   int _index = 0;
 

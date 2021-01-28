@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:startup_namer/funwiget/localizations/custom/DemoLocalizations.dart';
 import 'package:startup_namer/funwiget/localizations/custom/DemoLocalizationsDelegate.dart';
 import 'package:startup_namer/tabmain/MainTab.dart';
 
@@ -15,15 +16,17 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: [
         // 本地化的代理
         GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        // 注册我们的代理类
+        // 注册我们的Delegate
         DemoLocalizationsDelegate(),
       ],
       supportedLocales: [
         const Locale('en', 'US'),
         const Locale('zh', "CN"),
       ],
-      title: 'Flutter Demo',
+      localeListResolutionCallback: (locales, supportedLocales) {},
+      onGenerateTitle: (context) => DemoLocalizations.of(context).titleDemo,
       theme: ThemeData(
         primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -38,7 +41,8 @@ class MyApp extends StatelessWidget {
           body: GestureDetector(
             onTap: () {
               FocusScopeNode currFocus = FocusScope.of(context);
-              if (!currFocus.hasPrimaryFocus && currFocus.focusedChild != null) {
+              if (!currFocus.hasPrimaryFocus &&
+                  currFocus.focusedChild != null) {
                 FocusManager.instance.primaryFocus.unfocus();
               }
             },
@@ -49,5 +53,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

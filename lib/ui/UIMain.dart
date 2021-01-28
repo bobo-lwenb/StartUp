@@ -5,8 +5,12 @@ import 'package:startup_namer/ui/FilterRoute.dart';
 import 'package:startup_namer/ui/Flex_Expanded.dart';
 import 'package:startup_namer/ui/PageViewRoute.dart';
 import 'package:startup_namer/ui/Wrap_Flow_Demo.dart';
+import 'package:startup_namer/ui/button_demo.dart';
 import 'package:startup_namer/ui/gradient_button/GradientButtonRoute.dart';
 import 'package:startup_namer/ui/layout_constraints.dart';
+import 'package:startup_namer/ui/picker/date_picker.dart';
+import 'package:startup_namer/ui/picker/time_picker.dart';
+import 'package:startup_namer/ui/safe_area.dart';
 import 'package:startup_namer/ui/textfeild/login.dart';
 import 'package:startup_namer/utils/GridViewWidget.dart';
 
@@ -37,6 +41,10 @@ class _UIMainState extends State<UIMain> {
     list.add(ItemData('BackdropFilter和ImageFilter', FilterRoute()));
     list.add(ItemData('Draggable、DragTarget', DraggableRoute()));
     list.add(ItemData('理解约束布局', LayoutConstraints()));
+    list.add(ItemData('时间选择器', DatePicker()));
+    list.add(ItemData('日期选择器', TimePicker()));
+    list.add(ItemData('SafeArea', SafeAreaDemo()));
+    list.add(ItemData('按钮', ButtonDemo()));
   }
 
   @override

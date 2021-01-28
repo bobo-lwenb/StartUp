@@ -18,7 +18,6 @@ class _FuncMainState extends State<FuncMain> {
     super.initState();
     list.add(ItemData('导航返回拦截WillPopScope', WillPopScopeTestRoute()));
     list.add(ItemData('Theme演示页面', ThemeTestRoute()));
-//    list.add(ItemData(DemoLocalizations.of(context).titleRoute, LogginRoute()));
     list.add(ItemData("Key的使用", KeyMain()));
   }
 

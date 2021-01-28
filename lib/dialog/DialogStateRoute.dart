@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:startup_namer/dialog/DialogCheckbox.dart';
+
+import 'DialogCheckbox.dart';
 
 class DialogStateRoute extends StatefulWidget {
   @override
@@ -20,7 +21,7 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
           children: <Widget>[
             Builder(
               builder: (BuildContext context) {
-                return OutlineButton(
+                return OutlinedButton(
                   child: Text('DialogState'),
                   onPressed: () async {
                     bool result = await _showDeleteConfirmDialog3();
@@ -37,7 +38,7 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
                 );
               },
             ),
-            OutlineButton(
+            OutlinedButton(
               child: Text("显示底部菜单列表"),
               onPressed: () async {
                 int type = await _showModalBottomSheet();
@@ -46,7 +47,7 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
             ),
             Builder(
               builder: (BuildContext context) {
-                return OutlineButton(
+                return OutlinedButton(
                   child: Text("显示全屏菜单列表"),
                   onPressed: () {
                     _showBottomSheet(context);
@@ -87,11 +88,11 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
             ],
           ),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text("取消"),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            FlatButton(
+            TextButton(
               child: Text("删除"),
               onPressed: () {
                 // 将选中状态返回
@@ -140,11 +141,11 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
             ],
           ),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text("取消"),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            FlatButton(
+            TextButton(
               child: Text("删除"),
               onPressed: () {
                 // 将选中状态返回
@@ -192,12 +193,11 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
             ],
           ),
           actions: <Widget>[
-            AnimatedOpacity(),
-            FlatButton(
+            TextButton(
               child: Text("取消"),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            FlatButton(
+            TextButton(
               child: Text("删除"),
               onPressed: () {
                 // 将选中状态返回
