@@ -30,7 +30,7 @@ class _ButtonDemoState extends State<ButtonDemo> {
             child: Text("Item 2"),
           ),
           PopupMenuItem(
-            value: "02",
+            value: "2",
             child: Text("Item 3"),
           ),
           PopupMenuItem(
@@ -59,6 +59,12 @@ class _ButtonDemoState extends State<ButtonDemo> {
           dropdownButton,
           popupMenuButton,
           iconButton,
+          _buildTextButton(),
+          _buildFlatButton(),
+          _buildOutlinedButton(),
+          _buildOutlineButton(),
+          _buildElevatedButton(),
+          _buildRasedButton(),
         ],
       ),
     );
@@ -78,7 +84,7 @@ class _ButtonDemoState extends State<ButtonDemo> {
           child: Text("Item 2"),
         ),
         PopupMenuItem(
-          value: "02",
+          value: "2",
           child: Text("Item 3"),
         ),
         PopupMenuItem(
@@ -86,6 +92,75 @@ class _ButtonDemoState extends State<ButtonDemo> {
           child: Text("Item 4"),
         ),
       ],
+    );
+  }
+
+  ButtonStyle style;
+
+  @override
+  void initState() {
+    style = ButtonStyle(
+      //设置颜色无效
+      textStyle: MaterialStateProperty.all(
+        TextStyle(fontSize: 18, color: Colors.red),
+      ),
+      foregroundColor: MaterialStateProperty.resolveWith(
+        (states) {
+          if (states.contains(MaterialState.pressed)) {
+            ////按下时的颜色
+            return Colors.blue;
+          }
+          //默认状态使用灰色
+          return Colors.black;
+        },
+      ),
+      overlayColor: MaterialStateProperty.all(Colors.purpleAccent[100]),
+    );
+    super.initState();
+  }
+
+  Widget _buildTextButton() {
+    return TextButton(
+      onPressed: () {},
+      child: Text("TextButton"),
+      style: style,
+    );
+  }
+
+  Widget _buildFlatButton() {
+    return FlatButton(
+      onPressed: () {},
+      child: Text("FlatBuuton"),
+    );
+  }
+
+  Widget _buildOutlinedButton() {
+    return OutlinedButton(
+      onPressed: () {},
+      child: Text("OutlinedButton"),
+      style: style,
+    );
+  }
+
+  Widget _buildOutlineButton() {
+    return OutlineButton(
+      onPressed: () {},
+      child: Text("OutlineButton"),
+    );
+  }
+
+  Widget _buildElevatedButton() {
+    return ElevatedButton(
+      onPressed: () {},
+      child: Text("ElevatedButton"),
+      style: style,
+    );
+  }
+
+  Widget _buildRasedButton() {
+    return RaisedButton(
+      onPressed: () {},
+      child: Text("RaisedButton"),
     );
   }
 }
