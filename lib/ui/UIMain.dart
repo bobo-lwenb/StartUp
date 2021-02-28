@@ -6,8 +6,9 @@ import 'package:startup_namer/ui/Flex_Expanded.dart';
 import 'package:startup_namer/ui/PageViewRoute.dart';
 import 'package:startup_namer/ui/Wrap_Flow_Demo.dart';
 import 'package:startup_namer/ui/button_demo.dart';
+import 'package:startup_namer/ui/card_demo.dart';
 import 'package:startup_namer/ui/gradient_button/GradientButtonRoute.dart';
-import 'package:startup_namer/ui/layout_constraints.dart';
+import 'package:startup_namer/ui/layout/layout_constraints.dart';
 import 'package:startup_namer/ui/picker/date_picker.dart';
 import 'package:startup_namer/ui/picker/time_picker.dart';
 import 'package:startup_namer/ui/safe_area.dart';
@@ -15,6 +16,10 @@ import 'package:startup_namer/ui/textfeild/login.dart';
 import 'package:startup_namer/utils/GridViewWidget.dart';
 
 import 'DismissibleRoute.dart';
+import 'layout/constraint_demo.dart';
+import 'layout/custom_multi_childl_ayout.dart';
+import 'layout/layout_constraint.dart';
+import 'orientation_builder.dart';
 import 'progressindicator/ProgressIndicatorRoute.dart';
 import 'scaffold/ScaffoldDemo.dart';
 
@@ -40,11 +45,16 @@ class _UIMainState extends State<UIMain> {
     list.add(ItemData('PageView的使用', PageViewRoute()));
     list.add(ItemData('BackdropFilter和ImageFilter', FilterRoute()));
     list.add(ItemData('Draggable、DragTarget', DraggableRoute()));
-    list.add(ItemData('理解约束布局', LayoutConstraints()));
     list.add(ItemData('时间选择器', DatePicker()));
     list.add(ItemData('日期选择器', TimePicker()));
     list.add(ItemData('SafeArea', SafeAreaDemo()));
     list.add(ItemData('按钮', ButtonDemo()));
+    list.add(ItemData('Card', CarsDemo()));
+    list.add(ItemData('OrientationBuilder', OrientationBuilderDemo()));
+    list.add(ItemData('布局约束', LayoutConstraint()));
+    list.add(ItemData('布局约束样例', ConstraintDemo()));
+    list.add(ItemData('理解约束布局', LayoutConstraints()));
+    list.add(ItemData('CustomMultiChildLayout', CustomMultiChildLayoutDemom()));
   }
 
   @override
