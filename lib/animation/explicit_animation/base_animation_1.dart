@@ -7,7 +7,8 @@ class BaseAnimation1 extends StatefulWidget {
 }
 
 // 需要继承TickerProvider，如果有多个AnimationController，则应该使用TickerProviderStateMixin。
-class _BaseAnimation1State extends State<BaseAnimation1> with SingleTickerProviderStateMixin {
+class _BaseAnimation1State extends State<BaseAnimation1>
+    with SingleTickerProviderStateMixin {
   // 用于保存动画的插值和状态
   Animation<double> animation;
 
@@ -18,7 +19,8 @@ class _BaseAnimation1State extends State<BaseAnimation1> with SingleTickerProvid
   void initState() {
     super.initState();
     // 传入的vsync参数用于接受屏幕刷新
-    controller = new AnimationController(vsync: this, duration: const Duration(seconds: 3));
+    controller = new AnimationController(
+        vsync: this, duration: const Duration(seconds: 3));
 
     // 添加动画的线性过程的描述，作用在AnimationController上
     animation = CurvedAnimation(parent: controller, curve: Curves.bounceIn);
@@ -37,7 +39,8 @@ class _BaseAnimation1State extends State<BaseAnimation1> with SingleTickerProvid
         title: Text('动画基本基本使用'),
       ),
       body: Center(
-        child: Image.asset('./images/flower.jpg', width: animation.value, height: animation.value),
+        child: Image.asset('./images/flower.jpg',
+            width: animation.value, height: animation.value),
       ),
     );
   }

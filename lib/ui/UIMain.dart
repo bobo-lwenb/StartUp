@@ -8,7 +8,9 @@ import 'package:startup_namer/ui/Wrap_Flow_Demo.dart';
 import 'package:startup_namer/ui/button_demo.dart';
 import 'package:startup_namer/ui/card_demo.dart';
 import 'package:startup_namer/ui/gradient_button/GradientButtonRoute.dart';
+import 'package:startup_namer/ui/layout/custom_single_child_layout.dart';
 import 'package:startup_namer/ui/layout/layout_constraints.dart';
+import 'package:startup_namer/ui/layout/render_object/multi_render_object_demo.dart';
 import 'package:startup_namer/ui/picker/date_picker.dart';
 import 'package:startup_namer/ui/picker/time_picker.dart';
 import 'package:startup_namer/ui/safe_area.dart';
@@ -17,8 +19,10 @@ import 'package:startup_namer/utils/GridViewWidget.dart';
 
 import 'DismissibleRoute.dart';
 import 'layout/constraint_demo.dart';
-import 'layout/custom_multi_childl_ayout.dart';
+import 'layout/custom_multi_childl_layout.dart';
 import 'layout/layout_constraint.dart';
+import 'layout/render_object/leaf_render_objec_demo.dart';
+import 'layout/render_object/single_render_object_demo.dart';
 import 'orientation_builder.dart';
 import 'progressindicator/ProgressIndicatorRoute.dart';
 import 'scaffold/ScaffoldDemo.dart';
@@ -54,7 +58,12 @@ class _UIMainState extends State<UIMain> {
     list.add(ItemData('布局约束', LayoutConstraint()));
     list.add(ItemData('布局约束样例', ConstraintDemo()));
     list.add(ItemData('理解约束布局', LayoutConstraints()));
+    list.add(
+        ItemData('CustomSingleChildLayout', CustomSingleChildLayoutDemo()));
     list.add(ItemData('CustomMultiChildLayout', CustomMultiChildLayoutDemom()));
+    list.add(ItemData('LeafRenderObjectWidget', LeafRenderObject()));
+    list.add(ItemData('SingleChildRenderObjectWidget', ShadowRenderDemo()));
+    list.add(ItemData('MultiChildRenderObjectWidget', MultiRenderDemo()));
   }
 
   @override

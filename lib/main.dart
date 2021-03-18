@@ -6,6 +6,7 @@ import 'package:startup_namer/funwiget/localizations/custom/DemoLocalizationsDel
 import 'package:startup_namer/tabmain/MainTab.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 

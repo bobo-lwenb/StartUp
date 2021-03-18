@@ -23,8 +23,6 @@ import io.flutter.plugins.GeneratedPluginRegistrant
 
 class MainActivity : FlutterActivity() {
 
-    private val CHANNEL = "samples.flutter.io/battery"
-
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         GeneratedPluginRegistrant.registerWith(flutterEngine)
 
@@ -58,7 +56,7 @@ class MainActivity : FlutterActivity() {
         /**
          * MethodChannel接收flutter的消息
          */
-        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).setMethodCallHandler { methodCall, result ->
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, Companion.CHANNEL).setMethodCallHandler { methodCall, result ->
             if (methodCall.method == "getBatteryLevel") {
                 val batteryLevel = getBatteryLevel()
                 if (batteryLevel != -1) {
@@ -74,7 +72,7 @@ class MainActivity : FlutterActivity() {
         /**
          * MethodChannel主动向flutter发送消息
          */
-        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, CHANNEL).invokeMethod("getContent", "arguments", object : MethodChannel.Result {
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, Companion.CHANNEL).invokeMethod("getContent", "arguments", object : MethodChannel.Result {
 
             override fun success(result: Any?) {
 
@@ -126,5 +124,9 @@ class MainActivity : FlutterActivity() {
             intent!!.getIntExtra(BatteryManager.EXTRA_LEVEL, -1) * 100 / intent.getIntExtra(BatteryManager.EXTRA_SCALE, -1)
         }
         return batteryLevel
+    }
+
+    companion object {
+        private const val CHANNEL = "samples.flutter.io/battery"
     }
 }
