@@ -10,11 +10,6 @@ class _BasicMessageChannelState extends State<BasicMessageChannelRoute> {
   String recive = 'null';
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -25,7 +20,11 @@ class _BasicMessageChannelState extends State<BasicMessageChannelRoute> {
           children: <Widget>[
             FlatButton(
               onPressed: () {
-                var args = {"method": "test", "ontent": "flutter 中的数据", "code": 100};
+                var args = {
+                  "method": "test",
+                  "ontent": "flutter 中的数据",
+                  "code": 100
+                };
                 _sendMessage(args);
               },
               child: Text('send'),
@@ -39,8 +38,8 @@ class _BasicMessageChannelState extends State<BasicMessageChannelRoute> {
 
   /// 向原生发送消息
   void _sendMessage(Map args) async {
-    BasicMessageChannel _basicMessageChannel =
-        const BasicMessageChannel('flutter_and_native_100', StandardMessageCodec());
+    BasicMessageChannel _basicMessageChannel = const BasicMessageChannel(
+        'flutter_and_native_100', StandardMessageCodec());
     Map reply = await _basicMessageChannel.send(args);
     int code = reply["code"];
     String message = reply["message"];
@@ -53,8 +52,8 @@ class _BasicMessageChannelState extends State<BasicMessageChannelRoute> {
 
   /// 接收原生主动发送的消息
   void _receiveMessage() {
-    BasicMessageChannel _basicMessageChannel =
-        const BasicMessageChannel('flutter_and_native_100', StandardMessageCodec());
+    BasicMessageChannel _basicMessageChannel = const BasicMessageChannel(
+        'flutter_and_native_100', StandardMessageCodec());
     _basicMessageChannel.setMessageHandler((result) async {
       //解析 原生发给 Flutter 的参数
       int code = result["code"];
