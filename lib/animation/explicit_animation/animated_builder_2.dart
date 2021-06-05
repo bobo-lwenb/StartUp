@@ -5,20 +5,22 @@ class AnimatedBuilder2 extends StatefulWidget {
   _AnimatedBuilder2State createState() => _AnimatedBuilder2State();
 }
 
-class _AnimatedBuilder2State extends State<AnimatedBuilder2> with SingleTickerProviderStateMixin {
+class _AnimatedBuilder2State extends State<AnimatedBuilder2>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation opacityAnimation;
   Animation heightAnimation;
 
   @override
   void initState() {
+    super.initState();
     _controller = AnimationController(
       duration: const Duration(seconds: 2),
       vsync: this,
     )..repeat(reverse: true);
     opacityAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(_controller);
-    heightAnimation = Tween<double>(begin: 100.0, end: 300.0).animate(_controller);
-    super.initState();
+    heightAnimation =
+        Tween<double>(begin: 100.0, end: 300.0).animate(_controller);
   }
 
   @override

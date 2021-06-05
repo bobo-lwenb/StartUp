@@ -217,13 +217,15 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
     final ThemeData theme = Theme.of(context);
     return showGeneralDialog<T>(
       context: context,
-      pageBuilder:
-          (BuildContext buildContext, Animation<double> animation, Animation<double> secondaryAnimation) {
+      pageBuilder: (BuildContext buildContext, Animation<double> animation,
+          Animation<double> secondaryAnimation) {
         final Widget pageChild = Builder(builder: builder);
         return SafeArea(
           child: Builder(
             builder: (BuildContext context) {
-              return theme != null ? Theme(data: theme, child: pageChild) : pageChild;
+              return theme != null
+                  ? Theme(data: theme, child: pageChild)
+                  : pageChild;
             },
           ),
         );

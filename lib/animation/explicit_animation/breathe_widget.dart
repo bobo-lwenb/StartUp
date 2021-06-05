@@ -5,7 +5,8 @@ class BreatheWidget extends StatefulWidget {
   _BreatheWidgetState createState() => _BreatheWidgetState();
 }
 
-class _BreatheWidgetState extends State<BreatheWidget> with SingleTickerProviderStateMixin {
+class _BreatheWidgetState extends State<BreatheWidget>
+    with SingleTickerProviderStateMixin {
   AnimationController _controller;
   Animation _animation4;
   Animation _animation7Opacity1;
@@ -18,10 +19,18 @@ class _BreatheWidgetState extends State<BreatheWidget> with SingleTickerProvider
       duration: const Duration(seconds: 20),
       vsync: this,
     );
-    _animation4 = Tween<double>(begin: 0, end: 1).chain(CurveTween(curve: Interval(0.0, 0.2))).animate(_controller);
-    _animation7Opacity1 = Tween<double>(begin: 1, end: 0.4).chain(CurveTween(curve: Interval(0.2, 0.375))).animate(_controller);
-    _animation7Opacity2 = Tween<double>(begin: 0.4, end: 1).chain(CurveTween(curve: Interval(0.375, 0.55))).animate(_controller);
-    _animation8 = Tween<double>(begin: 1, end: 0).chain(CurveTween(curve: Interval(0.55, 0.95))).animate(_controller);
+    _animation4 = Tween<double>(begin: 0, end: 1)
+        .chain(CurveTween(curve: Interval(0.0, 0.2)))
+        .animate(_controller);
+    _animation7Opacity1 = Tween<double>(begin: 1, end: 0.4)
+        .chain(CurveTween(curve: Interval(0.2, 0.375)))
+        .animate(_controller);
+    _animation7Opacity2 = Tween<double>(begin: 0.4, end: 1)
+        .chain(CurveTween(curve: Interval(0.375, 0.55)))
+        .animate(_controller);
+    _animation8 = Tween<double>(begin: 1, end: 0)
+        .chain(CurveTween(curve: Interval(0.55, 0.95)))
+        .animate(_controller);
     super.initState();
   }
 
@@ -36,7 +45,9 @@ class _BreatheWidgetState extends State<BreatheWidget> with SingleTickerProvider
           animation: _controller,
           builder: (BuildContext context, Widget child) {
             return Opacity(
-              opacity: _controller.value <= 0.375 ? _animation7Opacity1.value : _animation7Opacity2.value,
+              opacity: _controller.value <= 0.375
+                  ? _animation7Opacity1.value
+                  : _animation7Opacity2.value,
               child: Container(
                 width: 400,
                 height: 400,

@@ -8,22 +8,27 @@ class LayoutConstraints extends StatefulWidget {
 class _State extends State<LayoutConstraints> {
   @override
   Widget build(BuildContext context) {
-    Widget container = Center(
+    Widget container = Container(
+      color: Colors.red,
+      // padding: const EdgeInsets.all(20.0),
       child: Container(
-        color: Colors.red,
-        padding: const EdgeInsets.all(20.0),
-        child: Container(
-          color: Colors.green,
-          width: 30,
-          height: 30,
-        ),
+        color: Colors.green,
+        width: 30,
+        height: 30,
       ),
     );
     return Scaffold(
       appBar: AppBar(
         title: Text('Layout Constraints'),
       ),
-      body: container,
+      body: LayoutBuilder(
+        builder: (context, constraints) {
+          debugPrint("$constraints");
+          debugPrint(
+              WidgetsBinding.instance.window.devicePixelRatio.toString());
+          return container;
+        },
+      ),
     );
   }
 }

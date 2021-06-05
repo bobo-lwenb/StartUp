@@ -1,22 +1,25 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// AnimatedBuilder正是将渲染逻辑分离出来
 class AnimatedBuilder1 extends StatefulWidget {
   @override
-  _AnimationBuilder1State createState() => new _AnimationBuilder1State();
+  _AnimationBuilder1State createState() => _AnimationBuilder1State();
 }
 
 /// 需要继承TickerProvider，如果有多个AnimationController，则应该使用TickerProviderStateMixin。
-class _AnimationBuilder1State extends State<AnimatedBuilder1> with SingleTickerProviderStateMixin {
+class _AnimationBuilder1State extends State<AnimatedBuilder1>
+    with SingleTickerProviderStateMixin {
   Animation<double> animation;
   AnimationController controller;
 
   @override
   void initState() {
     super.initState();
-    controller = new AnimationController(duration: const Duration(seconds: 3), vsync: this);
+    controller =
+        AnimationController(duration: const Duration(seconds: 3), vsync: this);
     animation = CurvedAnimation(parent: controller, curve: Curves.bounceIn);
-    animation = new Tween(begin: 0.0, end: 300.0).animate(animation);
+    animation = Tween(begin: 0.0, end: 300.0).animate(animation);
     animation.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         controller.reverse();

@@ -7,7 +7,8 @@ class WidgetsBindingRoute extends StatefulWidget {
   WidgetsBindingState createState() => WidgetsBindingState();
 }
 
-class WidgetsBindingState extends State<WidgetsBindingRoute> with WidgetsBindingObserver {
+class WidgetsBindingState extends State<WidgetsBindingRoute>
+    with WidgetsBindingObserver {
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
@@ -22,6 +23,12 @@ class WidgetsBindingState extends State<WidgetsBindingRoute> with WidgetsBinding
       ),
       body: Text('WidgetsBindingObserver'),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
   }
 
   // 当主机告诉应用将新路线推送到导航器时调用。

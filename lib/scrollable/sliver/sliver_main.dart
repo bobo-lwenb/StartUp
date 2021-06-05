@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:startup_namer/scrollable/sliver/sliver_demo.dart';
 import 'package:startup_namer/utils/GridViewWidget.dart';
 import 'custom_scrollview_demo.dart';
 import 'nested_scrollview_demo.dart';
@@ -10,6 +11,7 @@ import 'sliver_to_box_adapter.dart';
 
 class SliverMain extends StatelessWidget {
   final List<ItemData> _list = [
+    ItemData('SliverDemo', SliverDemo()),
     ItemData('SliverAppBar', SliverAppBarDemo()),
     ItemData('SliverPersistentHeader', SliverPersistentHeaderDemo()),
     ItemData('SliverToBoxAdapter', SliverToBoxAdapterDemo()),
