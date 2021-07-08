@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:startup_namer/funwiget/key/KeyMain.dart';
+import 'package:startup_namer/funwiget/will_pop_scope_demo.dart';
 import 'package:startup_namer/utils/GridViewWidget.dart';
 
 import 'ThemeTestRoute.dart';
@@ -16,7 +17,8 @@ class _FuncMainState extends State<FuncMain> {
   @override
   void initState() {
     super.initState();
-    list.add(ItemData('导航返回拦截WillPopScope', WillPopScopeTestRoute()));
+    list.add(ItemData('WillPopScope1', WillPopScopeTestRoute()));
+    list.add(ItemData('WillPopScope2', WillPopScopeDemo()));
     list.add(ItemData('Theme演示页面', ThemeTestRoute()));
     list.add(ItemData("Key的使用", KeyMain()));
   }

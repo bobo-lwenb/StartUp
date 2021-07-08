@@ -1,164 +1,128 @@
+import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedListRoute extends StatefulWidget {
+  const AnimatedListRoute({Key key}) : super(key: key);
+
   @override
-  _AnimatedListSampleState createState() => _AnimatedListSampleState();
+  _AnimatedListRouteState createState() => _AnimatedListRouteState();
 }
 
-class _AnimatedListSampleState extends State<AnimatedListRoute> {
-  final GlobalKey<AnimatedListState> _listKey = GlobalKey<AnimatedListState>();
-  ListModel<int> _list;
-  int _selectedItem;
-  int _nextItem; // The next item inserted when the user presses the '+' button.
+class _AnimatedListRouteState extends State<AnimatedListRoute> {
+  final GlobalKey<AnimatedListState> _globalKey =
+      GlobalKey<AnimatedListState>();
+  final List<String> _data = List.empty(growable: true);
 
   @override
   void initState() {
     super.initState();
-    _list = ListModel<int>(
-      listKey: _listKey,
-      initialItems: <int>[0, 1, 2],
-      removedItemBuilder: _buildRemovedItem,
-    );
-    _nextItem = 3;
-  }
-
-  Widget _buildItem(BuildContext context, int index, Animation<double> animation) {
-    return CardItem(
-      animation: animation,
-      item: _list[index],
-      selected: _selectedItem == _list[index],
-      onTap: () {
-        setState(() {
-          _selectedItem = _selectedItem == _list[index] ? null : _list[index];
-        });
-      },
-    );
-  }
-
-  Widget _buildRemovedItem(int item, BuildContext context, Animation<double> animation) {
-    return CardItem(
-      animation: animation,
-      item: item,
-      selected: false,
-    );
-  }
-
-  void _insert() {
-    final int index = _selectedItem == null ? _list.length : _list.indexOf(_selectedItem);
-    _list.insert(index, _nextItem++);
-  }
-
-  void _remove() {
-    if (_selectedItem != null) {
-      _list.removeAt(_list.indexOf(_selectedItem));
-      setState(() {
-        _selectedItem = null;
-      });
-    }
+    List<String> array =
+        generateWordPairs().take(5).map((e) => e.asPascalCase).toList();
+    _data.addAll(array);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('AnimatedList'),
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.add_circle),
-            onPressed: _insert,
-            tooltip: 'insert a new item',
-          ),
-          IconButton(
-            icon: const Icon(Icons.remove_circle),
-            onPressed: _remove,
-            tooltip: 'remove the selected item',
-          ),
-        ],
+        title: Text('AnimatedList'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: AnimatedList(
-          key: _listKey,
-          initialItemCount: _list.length,
-          itemBuilder: _buildItem,
+      body: AnimatedList(
+        key: _globalKey,
+        itemBuilder: (context, index, animation) => ListItem(
+          text: _data[index],
+          index: index,
+          animation: animation,
         ),
+        initialItemCount: _data.length,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          String word =
+              generateWordPairs().take(1).map((e) => e.asPascalCase).first;
+          _data.add(word);
+          _globalKey.currentState.insertItem(
+            _data.length - 1,
+            duration: const Duration(milliseconds: 200),
+          );
+        },
+        child: Icon(Icons.add_outlined),
       ),
     );
   }
 }
 
-class ListModel<E> {
-  ListModel({
-    @required this.listKey,
-    @required this.removedItemBuilder,
-    Iterable<E> initialItems,
-  })  : assert(listKey != null),
-        assert(removedItemBuilder != null),
-        _items = List<E>.from(initialItems ?? <E>[]);
+class ListItem extends StatefulWidget {
+  final String text;
+  final int index;
+  final Animation animation;
 
-  final GlobalKey<AnimatedListState> listKey;
-  final dynamic removedItemBuilder;
-  final List<E> _items;
+  ListItem({
+    Key key,
+    @required this.text,
+    @required this.index,
+    @required this.animation,
+  }) : super(key: key);
 
-  AnimatedListState get _animatedList => listKey.currentState;
-
-  void insert(int index, E item) {
-    _items.insert(index, item);
-    _animatedList.insertItem(index);
-  }
-
-  E removeAt(int index) {
-    final E removedItem = _items.removeAt(index);
-    if (removedItem != null) {
-      _animatedList.removeItem(index, (BuildContext context, Animation<double> animation) {
-        return removedItemBuilder(removedItem, context, animation);
-      });
-    }
-    return removedItem;
-  }
-
-  int get length => _items.length;
-
-  E operator [](int index) => _items[index];
-
-  int indexOf(E item) => _items.indexOf(item);
+  @override
+  _ListItemState createState() => _ListItemState();
 }
 
-class CardItem extends StatelessWidget {
-  const CardItem({Key key, @required this.animation, this.onTap, @required this.item, this.selected: false})
-      : assert(animation != null),
-        assert(item != null && item >= 0),
-        assert(selected != null),
-        super(key: key);
-
-  final Animation<double> animation;
-  final VoidCallback onTap;
-  final int item;
-  final bool selected;
+class _ListItemState extends State<ListItem> {
+  Tween<Offset> _tween = Tween<Offset>(begin: Offset(1, 0), end: Offset(0, 0));
 
   @override
   Widget build(BuildContext context) {
-    TextStyle textStyle = Theme.of(context).textTheme.display1;
-    if (selected) textStyle = textStyle.copyWith(color: Colors.lightGreenAccent[400]);
-    return Padding(
-      padding: const EdgeInsets.all(2.0),
-      child: SizeTransition(
-        axis: Axis.vertical,
-        sizeFactor: animation,
-        child: GestureDetector(
-          behavior: HitTestBehavior.opaque,
-          onTap: onTap,
-          child: SizedBox(
-            height: 128.0,
-            child: Card(
-              color: Colors.primaries[item % Colors.primaries.length],
-              child: Center(
-                child: Text('Item $item', style: textStyle),
-              ),
-            ),
-          ),
-        ),
+    Widget text = Center(
+      child: Text(
+        widget.text,
+        style: TextStyle(color: Colors.white),
       ),
+    );
+    Widget delete = GestureDetector(
+      onTap: () {
+        context
+            .findAncestorStateOfType<_AnimatedListRouteState>()
+            ._data
+            .removeAt(widget.index);
+        context
+            .findAncestorStateOfType<AnimatedListState>()
+            .removeItem(
+          widget.index,
+              (context, animation) => ListItem(
+              text: widget.text,
+              index: widget.index,
+              animation: animation),
+          duration: const Duration(milliseconds: 200),
+        );
+      },
+      child: Icon(
+        Icons.delete_forever_rounded,
+        color: Colors.white,
+      ),
+    );
+    Widget flex = Flex(
+      direction: Axis.horizontal,
+      children: [
+        Expanded(
+          child: text,
+        ),
+        Expanded(
+          child: delete,
+        )
+      ],
+    );
+    Widget item = Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
+        height: 50,
+        color: Colors.primaries[widget.index % Colors.primaries.length],
+        child: flex,
+      ),
+    );
+    return SlideTransition(
+      position: widget.animation.drive(_tween),
+      child: item,
     );
   }
 }
