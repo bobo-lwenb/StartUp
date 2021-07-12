@@ -4,7 +4,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 class PersistentHeader extends StatefulWidget {
-  const PersistentHeader({Key key}) : super(key: key);
+  const PersistentHeader({Key? key}) : super(key: key);
 
   @override
   _PersistentHeaderState createState() => _PersistentHeaderState();
@@ -108,7 +108,7 @@ class _PersistentHeaderState extends State<PersistentHeader> {
     var map = Map<String, List<Member>>();
     data.forEach((element) {
       if (map.keys.contains(element.team)) {
-        map[element.team].add(element);
+        map[element.team]?.add(element);
       } else {
         var list = <Member>[];
         list.add(element);
@@ -122,7 +122,7 @@ class _PersistentHeaderState extends State<PersistentHeader> {
 class _MyDelegate extends SliverPersistentHeaderDelegate {
   final String title;
 
-  _MyDelegate({this.title});
+  _MyDelegate({required this.title});
   @override
   Widget build(
       BuildContext context, double shrinkOffset, bool overlapsContent) {
@@ -156,9 +156,9 @@ class Member {
   String get avatarUrl => "https://www.snh48.com/images/member/zp_$id.jpg";
 
   Member({
-    this.id,
-    this.name,
-    this.team,
+    required this.id,
+    required this.name,
+    required this.team,
   });
 
   @override

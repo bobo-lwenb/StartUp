@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 
 class ClipPathRoute extends PageRoute {
   ClipPathRoute({
-    @required this.builder,
+    required this.builder,
     this.transitionDuration = const Duration(milliseconds: 300),
     this.opaque = true,
     this.barrierDismissible = false,
-    this.barrierColor,
-    this.barrierLabel,
+    required this.barrierColor,
+    required this.barrierLabel,
     this.maintainState = true,
   });
 
@@ -34,13 +34,15 @@ class ClipPathRoute extends PageRoute {
   bool opaque;
 
   @override
-  Widget buildTransitions(
-      BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
-    return super.buildTransitions(context, animation, secondaryAnimation, child);
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
+    return super
+        .buildTransitions(context, animation, secondaryAnimation, child);
   }
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+  Widget buildPage(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation) {
     return AnimatedBuilder(
       animation: animation,
       builder: (context, child) {
@@ -62,8 +64,10 @@ class CirclePath extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = Path();
-    double radius = value * sqrt(size.height * size.height + size.width * size.width);
-    path.addOval(Rect.fromLTRB(size.width - radius, -radius, size.width + radius, radius));
+    double radius =
+        value * sqrt(size.height * size.height + size.width * size.width);
+    path.addOval(Rect.fromLTRB(
+        size.width - radius, -radius, size.width + radius, radius));
     return path;
   }
 

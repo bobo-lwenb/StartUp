@@ -86,7 +86,7 @@ class _State extends State<DraggableRoute> {
       ),
     );
     return DragTarget(
-      builder: (BuildContext context, List<Color> candidateData, List<dynamic> rejectedData) {
+      builder: (context, candidateData, rejectedData) {
         return _dragData == null ? _empty : _content;
       },
       onWillAccept: (color) {

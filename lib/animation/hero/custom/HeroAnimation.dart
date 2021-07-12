@@ -4,10 +4,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart' show timeDilation;
 
 class Photo extends StatelessWidget {
-  Photo({Key key, this.photo, this.color, this.onTap}) : super(key: key);
+  Photo({
+    Key? key,
+    required this.photo,
+    this.color,
+    required this.onTap,
+  }) : super(key: key);
 
   final String photo;
-  final Color color;
+  final Color? color;
   final VoidCallback onTap;
 
   Widget build(BuildContext context) {
@@ -31,9 +36,9 @@ class Photo extends StatelessWidget {
 
 class RadialExpansion extends StatelessWidget {
   RadialExpansion({
-    Key key,
-    this.maxRadius,
-    this.child,
+    Key? key,
+    required this.maxRadius,
+    required this.child,
   })  : clipRectSize = 2.0 * (maxRadius / math.sqrt2),
         super(key: key);
 
@@ -65,7 +70,8 @@ class RadialExpansionDemo extends StatefulWidget {
 class _State extends State<RadialExpansionDemo> {
   static const double kMinRadius = 32.0;
   static const double kMaxRadius = 128.0;
-  static const opacityCurve = const Interval(0.0, 0.75, curve: Curves.fastOutSlowIn);
+  static const opacityCurve =
+      const Interval(0.0, 0.75, curve: Curves.fastOutSlowIn);
 
   @override
   Widget build(BuildContext context) {
@@ -98,12 +104,13 @@ class _State extends State<RadialExpansionDemo> {
     );
   }
 
-  Widget _buildHero(BuildContext context, String imageName, String description) {
+  Widget _buildHero(
+      BuildContext context, String imageName, String description) {
     return Container(
       width: kMinRadius * 2.0,
       height: kMinRadius * 2.0,
       child: Hero(
-        createRectTween: _createRectTween,
+        // createRectTween: _createRectTween,
         tag: imageName,
         child: RadialExpansion(
           maxRadius: kMaxRadius,
@@ -112,11 +119,12 @@ class _State extends State<RadialExpansionDemo> {
             onTap: () {
               Navigator.of(context).push(
                 PageRouteBuilder<void>(
-                  pageBuilder:
-                      (BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) {
+                  pageBuilder: (BuildContext context,
+                      Animation<double> animation,
+                      Animation<double> secondaryAnimation) {
                     return AnimatedBuilder(
                         animation: animation,
-                        builder: (BuildContext context, Widget child) {
+                        builder: (BuildContext context, Widget? child) {
                           return Opacity(
                             opacity: opacityCurve.transform(animation.value),
                             child: _buildPage(context, imageName, description),
@@ -132,7 +140,8 @@ class _State extends State<RadialExpansionDemo> {
     );
   }
 
-  Widget _buildPage(BuildContext context, String imageName, String description) {
+  Widget _buildPage(
+      BuildContext context, String imageName, String description) {
     return Container(
       color: Theme.of(context).canvasColor,
       child: Center(
@@ -145,7 +154,7 @@ class _State extends State<RadialExpansionDemo> {
                 width: kMaxRadius * 2.0,
                 height: kMaxRadius * 2.0,
                 child: Hero(
-                  createRectTween: _createRectTween,
+                  // createRectTween: _createRectTween,
                   tag: imageName,
                   child: RadialExpansion(
                     maxRadius: kMaxRadius,

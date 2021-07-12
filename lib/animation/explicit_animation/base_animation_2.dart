@@ -6,16 +6,18 @@ class BaseAnimation2 extends StatefulWidget {
   _BaseAnimation2State createState() => _BaseAnimation2State();
 }
 
-class _BaseAnimation2State extends State<BaseAnimation2> with SingleTickerProviderStateMixin {
-  Animation<double> animation;
-  AnimationController controller;
-  double animationValue;
-  AnimationStatus animationStatus;
+class _BaseAnimation2State extends State<BaseAnimation2>
+    with SingleTickerProviderStateMixin {
+  late Animation<double> animation;
+  late AnimationController controller;
+  late double animationValue;
+  late AnimationStatus animationStatus;
 
   @override
   void initState() {
     super.initState();
-    controller = new AnimationController(vsync: this, duration: const Duration(seconds: 2));
+    controller = new AnimationController(
+        vsync: this, duration: const Duration(seconds: 2));
     animation = Tween<double>(begin: 0, end: 300).animate(controller)
       ..addListener(() {
         setState(() {

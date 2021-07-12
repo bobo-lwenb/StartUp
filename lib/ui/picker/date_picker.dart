@@ -24,13 +24,13 @@ class _DatePickerState extends State<DatePicker> {
   }
 
   void _showDatePicker() async {
-    DateTime dateTime = await showDatePicker(
+    DateTime? dateTime = await showDatePicker(
       context: context,
       initialDate: selectDate,
-      initialEntryMode: DatePickerEntryMode.calendar,
-      initialDatePickerMode: DatePickerMode.year,
       firstDate: DateTime(1990),
       lastDate: DateTime(2090),
+      initialEntryMode: DatePickerEntryMode.calendar,
+      initialDatePickerMode: DatePickerMode.year,
     );
     if (dateTime == null) return;
     setState(() {

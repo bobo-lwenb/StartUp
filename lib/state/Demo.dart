@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 
 class TopPage extends StatelessWidget {
-  GlobalKey _key = GlobalKey();
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,8 +28,8 @@ class TopPage extends StatelessWidget {
 
 class HomePage extends StatefulWidget {
   HomePage({
-    Key key,
-    this.child,
+    Key? key,
+    required this.child,
   }) : super(key: key);
 
   final Widget child;
@@ -41,9 +39,12 @@ class HomePage extends StatefulWidget {
 
   static HomePageState of(BuildContext context, {bool rebuild = true}) {
     if (rebuild) {
-      return context.dependOnInheritedWidgetOfExactType<_MyInheritedWidget>(aspect: _MyInheritedWidget).data;
+      return context
+          .dependOnInheritedWidgetOfExactType<_MyInheritedWidget>(
+              aspect: _MyInheritedWidget)!
+          .data;
     }
-    return context.findAncestorWidgetOfExactType<_MyInheritedWidget>().data;
+    return context.findAncestorWidgetOfExactType<_MyInheritedWidget>()!.data;
   }
 }
 
@@ -67,9 +68,9 @@ class HomePageState extends State<HomePage> {
 
 class _MyInheritedWidget extends InheritedWidget {
   _MyInheritedWidget({
-    Key key,
-    @required this.data,
-    @required Widget child,
+    Key? key,
+    required this.data,
+    required Widget child,
   }) : super(key: key, child: child);
 
   final HomePageState data;
@@ -107,7 +108,7 @@ class WidgetC extends StatelessWidget {
   Widget build(BuildContext context) {
     print('WidgetC');
     final HomePageState state = HomePage.of(context, rebuild: false);
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: () {
         state._incrementCounter();
       },

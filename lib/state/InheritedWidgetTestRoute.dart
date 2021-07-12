@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class InheritedWidgetTestRoute extends StatefulWidget {
   @override
-  _InheritedWidgetTestRouteState createState() => _InheritedWidgetTestRouteState();
+  _InheritedWidgetTestRouteState createState() =>
+      _InheritedWidgetTestRouteState();
 }
 
 class _InheritedWidgetTestRouteState extends State<InheritedWidgetTestRoute> {
@@ -22,9 +23,10 @@ class _InheritedWidgetTestRouteState extends State<InheritedWidgetTestRoute> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(bottom: 20.0),
-                child: _TestWidget(), // setState会调用build方法，而此时会重新new一个_TestWidget，无法做到缓存，将更新整个子树
+                child:
+                    _TestWidget(), // setState会调用build方法，而此时会重新new一个_TestWidget，无法做到缓存，将更新整个子树
               ),
-              RaisedButton(
+              ElevatedButton(
                 child: Text('Increment'),
                 onPressed: () => setState(() => ++count),
               ),
@@ -46,7 +48,7 @@ class _TestWidgetState extends State<_TestWidget> {
   Widget build(BuildContext context) {
     return Text(
       /// 使用InheritedWidget中的共享数据
-      ShareDataWidget.of(context, true).data.toString(),
+      ShareDataWidget.of(context, true)!.data.toString(),
     );
   }
 
@@ -63,8 +65,8 @@ class ShareDataWidget extends InheritedWidget {
   final int data;
 
   ShareDataWidget({
-    @required this.data,
-    Widget child,
+    required this.data,
+    required Widget child,
   }) : super(child: child);
 
   @override
@@ -75,13 +77,16 @@ class ShareDataWidget extends InheritedWidget {
   }
 
   /// 定义一个便捷方法，方便子树中的widget获取共享数据
-  static ShareDataWidget of(BuildContext context, bool rebuild) {
+  static ShareDataWidget? of(BuildContext context, bool rebuild) {
     if (rebuild) {
       // 有注册关系，所以子孙组件的didChangeDependencies()方法和build()方法都会调用
-      return context.dependOnInheritedWidgetOfExactType<ShareDataWidget>(aspect: ShareDataWidget);
+      return context.dependOnInheritedWidgetOfExactType<ShareDataWidget>(
+          aspect: ShareDataWidget);
     } else {
       // 没有注册关系，所以之后当InheritedWidget发生变化时，就不会更新相应的子孙Widget。
-      return context.getElementForInheritedWidgetOfExactType<ShareDataWidget>().widget;
+      return context
+          .getElementForInheritedWidgetOfExactType<ShareDataWidget>()!
+          .widget as ShareDataWidget;
     }
   }
 }

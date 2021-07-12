@@ -17,7 +17,7 @@ class StateLifecycle extends StatelessWidget {
 class StateLifecycleWidget extends StatefulWidget {
   final int initValue;
 
-  const StateLifecycleWidget({Key key, this.initValue = 0});
+  const StateLifecycleWidget({Key? key, this.initValue = 0});
 
   @override
   _LifeCycleState createState() => _LifeCycleState();
@@ -25,7 +25,7 @@ class StateLifecycleWidget extends StatefulWidget {
 
 class _LifeCycleState extends State<StateLifecycleWidget> {
   final String temp = 'lifecycleState';
-  int _counter;
+  late int _counter;
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _LifeCycleState extends State<StateLifecycleWidget> {
   @override
   Widget build(BuildContext context) {
     print('$temp build');
-    return FlatButton(
+    return TextButton(
       child: Text('$_counter'),
       //点击后计数器自增
       onPressed: () => setState(

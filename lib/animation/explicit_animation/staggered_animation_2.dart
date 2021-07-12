@@ -5,8 +5,9 @@ class StaggeredAnimation2 extends StatefulWidget {
   _StaggeredAnimation2State createState() => _StaggeredAnimation2State();
 }
 
-class _StaggeredAnimation2State extends State<StaggeredAnimation2> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+class _StaggeredAnimation2State extends State<StaggeredAnimation2>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -33,11 +34,26 @@ class _StaggeredAnimation2State extends State<StaggeredAnimation2> with SingleTi
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SlidingBox(controller: _controller, color: Colors.red[100], interval: Interval(0.0, 0.2)),
-            SlidingBox(controller: _controller, color: Colors.red[300], interval: Interval(0.2, 0.4)),
-            SlidingBox(controller: _controller, color: Colors.red[500], interval: Interval(0.4, 0.6)),
-            SlidingBox(controller: _controller, color: Colors.red[700], interval: Interval(0.6, 0.8)),
-            SlidingBox(controller: _controller, color: Colors.red[900], interval: Interval(0.8, 1.0)),
+            SlidingBox(
+                controller: _controller,
+                color: Colors.red[100]!,
+                interval: Interval(0.0, 0.2)),
+            SlidingBox(
+                controller: _controller,
+                color: Colors.red[300]!,
+                interval: Interval(0.2, 0.4)),
+            SlidingBox(
+                controller: _controller,
+                color: Colors.red[500]!,
+                interval: Interval(0.4, 0.6)),
+            SlidingBox(
+                controller: _controller,
+                color: Colors.red[700]!,
+                interval: Interval(0.6, 0.8)),
+            SlidingBox(
+                controller: _controller,
+                color: Colors.red[900]!,
+                interval: Interval(0.8, 1.0)),
           ],
         ),
       ),
@@ -50,7 +66,11 @@ class SlidingBox extends StatelessWidget {
   final Color color;
   final Interval interval;
 
-  SlidingBox({this.controller, this.color, this.interval});
+  SlidingBox({
+    required this.controller,
+    required this.color,
+    required this.interval,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -8,11 +8,26 @@ class WrapFlowDemo extends StatelessWidget {
       runSpacing: 4.0,
       alignment: WrapAlignment.center,
       children: [
-        Chip(avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('H')), label: Text('Hello world')),
-        Chip(avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('H')), label: Text('Hello world')),
-        Chip(avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('H')), label: Text('Hello world')),
-        Chip(avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('H')), label: Text('Hello world')),
-        Chip(avatar: CircleAvatar(backgroundColor: Colors.blue, child: Text('H')), label: Text('Hello world')),
+        Chip(
+            avatar:
+                CircleAvatar(backgroundColor: Colors.blue, child: Text('H')),
+            label: Text('Hello world')),
+        Chip(
+            avatar:
+                CircleAvatar(backgroundColor: Colors.blue, child: Text('H')),
+            label: Text('Hello world')),
+        Chip(
+            avatar:
+                CircleAvatar(backgroundColor: Colors.blue, child: Text('H')),
+            label: Text('Hello world')),
+        Chip(
+            avatar:
+                CircleAvatar(backgroundColor: Colors.blue, child: Text('H')),
+            label: Text('Hello world')),
+        Chip(
+            avatar:
+                CircleAvatar(backgroundColor: Colors.blue, child: Text('H')),
+            label: Text('Hello world')),
       ],
     );
 
@@ -47,7 +62,7 @@ class WrapFlowDemo extends StatelessWidget {
 class TestFlowDelegate extends FlowDelegate {
   EdgeInsets margin = EdgeInsets.zero;
 
-  TestFlowDelegate({this.margin});
+  TestFlowDelegate({required this.margin});
 
   @override
   void paintChildren(FlowPaintingContext context) {
@@ -55,16 +70,17 @@ class TestFlowDelegate extends FlowDelegate {
     var y = margin.top;
     // 计算每一个子widget的位置
     for (int i = 0; i < context.childCount; i++) {
-      var w = context.getChildSize(i).width + x + margin.right;
+      var w = context.getChildSize(i)!.width + x + margin.right;
       if (w < context.size.width) {
         context.paintChild(i, transform: Matrix4.translationValues(x, y, 0.0));
         x = w + margin.left;
       } else {
         x = margin.left;
-        y += context.getChildSize(i).height + margin.top + margin.bottom;
+        y += context.getChildSize(i)!.height + margin.top + margin.bottom;
         // 绘制子widget(有优化)
-        context.paintChild(i, transform: new Matrix4.translationValues(x, y, 0.0));
-        x += context.getChildSize(i).width + margin.left + margin.right;
+        context.paintChild(i,
+            transform: new Matrix4.translationValues(x, y, 0.0));
+        x += context.getChildSize(i)!.width + margin.left + margin.right;
       }
     }
   }

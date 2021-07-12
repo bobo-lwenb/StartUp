@@ -8,7 +8,7 @@ class User {
   String name;
   String email;
 
-  User({this.name, this.email});
+  User({required this.name, required this.email});
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);
 

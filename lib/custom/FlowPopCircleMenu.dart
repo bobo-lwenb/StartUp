@@ -8,7 +8,7 @@ class FlowPopCircleMenu extends StatefulWidget {
 }
 
 class _State extends State<FlowPopCircleMenu> with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
@@ -38,7 +38,9 @@ class _State extends State<FlowPopCircleMenu> with TickerProviderStateMixin {
         icon: Icon(Icons.menu),
         onPressed: () {
           setState(() {
-            _controller.status == AnimationStatus.completed ? _controller.reverse() : _controller.forward();
+            _controller.status == AnimationStatus.completed
+                ? _controller.reverse()
+                : _controller.forward();
           });
         },
       ),
@@ -77,7 +79,7 @@ class _State extends State<FlowPopCircleMenu> with TickerProviderStateMixin {
 }
 
 class FlowPopCircleDelegate extends FlowDelegate {
-  FlowPopCircleDelegate({@required this.radius});
+  FlowPopCircleDelegate({required this.radius});
 
   final double radius; //绑定半径,让圆动起来
 

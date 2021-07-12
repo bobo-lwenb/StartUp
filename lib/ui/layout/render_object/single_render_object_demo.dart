@@ -26,7 +26,10 @@ class _RenderDemoState extends State<ShadowRenderDemo> {
 
 class ShadowBox extends SingleChildRenderObjectWidget {
   final double distance;
-  ShadowBox({this.distance, Widget child}) : super(child: child);
+  ShadowBox({
+    required this.distance,
+    required Widget child,
+  }) : super(child: child);
 
   @override
   RenderObject createRenderObject(BuildContext context) {
@@ -44,19 +47,19 @@ class RenderShadowBox extends RenderBox
     with RenderObjectWithChildMixin, DebugOverflowIndicatorMixin {
   double distance;
 
-  RenderShadowBox({this.distance});
+  RenderShadowBox({required this.distance});
 
   @override
   void performLayout() {
-    child.layout(constraints, parentUsesSize: true);
+    child!.layout(constraints, parentUsesSize: true);
     size = (child as RenderBox).size;
   }
 
   @override
   void paint(PaintingContext context, Offset offset) {
-    context.paintChild(child, offset);
+    context.paintChild(child!, offset);
     context.pushOpacity(offset, 127, (context, offset) {
-      context.paintChild(child, offset + Offset(distance, distance));
+      context.paintChild(child!, offset + Offset(distance, distance));
     });
     paintOverflowIndicator(
       context,

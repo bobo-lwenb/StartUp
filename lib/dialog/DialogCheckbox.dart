@@ -5,9 +5,9 @@ class DialogCheckbox extends StatefulWidget {
   final bool value;
 
   const DialogCheckbox({
-    Key key,
-    this.onChanged,
-    this.value,
+    Key? key,
+    required this.onChanged,
+    required this.value,
   }) : super(key: key);
 
   @override
@@ -15,7 +15,7 @@ class DialogCheckbox extends StatefulWidget {
 }
 
 class _DialogCheckboxState extends State<DialogCheckbox> {
-  bool value;
+  late bool value;
 
   @override
   void initState() {
@@ -28,7 +28,7 @@ class _DialogCheckboxState extends State<DialogCheckbox> {
     return Checkbox(
       value: value,
       onChanged: (v) {
-        widget.onChanged(v);
+        widget.onChanged(v!);
         setState(() {
           value = v;
         });

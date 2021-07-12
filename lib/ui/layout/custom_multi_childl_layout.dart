@@ -26,7 +26,7 @@ class _CustomMultiChildLayoutDemomState
 class CustomDelegate extends MultiChildLayoutDelegate {
   @override
   void performLayout(Size size) {
-    Size size1, size2;
+    late Size size1, size2;
     if (hasChild(1)) {
       size1 = layoutChild(
         1,

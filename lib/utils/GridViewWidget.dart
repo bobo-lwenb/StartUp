@@ -5,8 +5,8 @@ class GridViewWidget extends StatefulWidget {
   final List<ItemData> widgets;
 
   GridViewWidget({
-    Key key,
-    @required this.widgets,
+    Key? key,
+    required this.widgets,
   }) : super(key: key);
 
   @override
@@ -34,7 +34,7 @@ class _GridViewWidgetState extends State<GridViewWidget> {
   }
 
   Widget _widget(String text, Widget page) {
-    return OutlineButton(
+    return OutlinedButton(
       child: Text(text),
       onPressed: () {
         Navigator.of(context).push(

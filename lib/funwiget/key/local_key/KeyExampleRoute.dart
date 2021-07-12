@@ -62,7 +62,7 @@ class Box extends StatefulWidget {
   @override
   _BoxState createState() => _BoxState();
 
-  Box({Key key}) : super(key: key);
+  Box({Key? key}) : super(key: key);
 }
 
 class _BoxState extends State<Box> {

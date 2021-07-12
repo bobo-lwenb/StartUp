@@ -9,7 +9,7 @@ class RenderMyAlign extends RenderShiftedBox {
 
   RenderMyAlign({
     this.alignment = Alignment.center,
-    RenderBox child,
+    RenderBox? child,
   }) : super(child);
 
   @override
@@ -18,7 +18,7 @@ class RenderMyAlign extends RenderShiftedBox {
     /// 父级向子级传递约束，子级必须服从给定的约束。
     /// parentUsesSize为true，表示父级依赖于子级的布局，子级布局改变，父级也要重新布局
     /// 反之，子级发生改变，不会通知父级。即父级不依赖子级
-    child.layout(
+    child!.layout(
       BoxConstraints(
         minWidth: 0,
         maxWidth: constraints.maxWidth,
@@ -31,12 +31,12 @@ class RenderMyAlign extends RenderShiftedBox {
     /// 对子级进行布局
     /// 经过前测量后，可通过 child.size 拿到 child 测量后的大小
     /// 这里parentData即负责存储父节点所需要的子节点的布局信息
-    final BoxParentData parentData = child.parentData;
+    final BoxParentData parentData = child!.parentData as BoxParentData;
     if (alignment == Alignment.center) {
       /// offset属性即用来设置子节点相对于父节点的位置
       parentData.offset = Offset(
-        (constraints.maxWidth - child.size.width) / 2,
-        (constraints.maxHeight - child.size.height) / 2,
+        (constraints.maxWidth - child!.size.width) / 2,
+        (constraints.maxHeight - child!.size.height) / 2,
       );
     } else {
       parentData.offset = Offset.zero;
@@ -56,9 +56,9 @@ class MyAlign extends SingleChildRenderObjectWidget {
   final AlignmentGeometry alignment;
 
   MyAlign({
-    Key key,
-    this.alignment,
-    Widget child,
+    Key? key,
+    required this.alignment,
+    required Widget child,
   }) : super(key: key, child: child);
 
   @override
@@ -102,7 +102,7 @@ class RenderTouchHighlight extends RenderConstrainedBox {
     final Canvas canvas = context.canvas;
     canvas.drawRect(offset & size, paints..color = Colors.grey);
 
-    paints.color = Colors.redAccent[100];
+    paints.color = Colors.redAccent[100]!;
     for (Offset dot in dots.values) {
       canvas.drawCircle(dot, 30, paints);
     }
@@ -111,8 +111,8 @@ class RenderTouchHighlight extends RenderConstrainedBox {
 
 class TouchHighlight extends SingleChildRenderObjectWidget {
   TouchHighlight({
-    Key key,
-    Widget child,
+    Key? key,
+    required Widget child,
   }) : super(key: key, child: child);
 
   @override

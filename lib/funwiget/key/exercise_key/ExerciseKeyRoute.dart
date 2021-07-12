@@ -6,7 +6,7 @@ class ExerciseKeyRoute extends StatefulWidget {
 }
 
 class _ExerciseKeyRouteState extends State<ExerciseKeyRoute> {
-  final List<Color> _colors = [
+  final List<Color?> _colors = [
     Colors.blue[100],
     Colors.blue[200],
     Colors.blue[300],
@@ -24,7 +24,7 @@ class _ExerciseKeyRouteState extends State<ExerciseKeyRoute> {
   @override
   Widget build(BuildContext context) {
     Future(() {
-      RenderBox box = _stackKey.currentContext.findRenderObject() as RenderBox;
+      RenderBox box = _stackKey.currentContext?.findRenderObject() as RenderBox;
       _offsetY = box.localToGlobal(Offset.zero).dy;
       print(_offsetY);
     });
@@ -34,7 +34,7 @@ class _ExerciseKeyRouteState extends State<ExerciseKeyRoute> {
       children: List.generate(_colors.length, (index) {
         return Box(
           key: ValueKey(_colors[index]),
-          color: _colors[index],
+          color: _colors[index]!,
           x: 0,
           y: index * Box.height,
           onDrag: (Color color) {
@@ -56,14 +56,14 @@ class _ExerciseKeyRouteState extends State<ExerciseKeyRoute> {
         final dy = event.position.dy - _offsetY;
         if (dy > (_current + 1) * Box.height) {
           if (_current == _colors.length - 1) return;
-          Color temp = _colors[_current];
+          Color temp = _colors[_current]!;
           _colors[_current] = _colors[_current + 1];
           _colors[_current + 1] = temp;
           _current++;
           setState(() {});
         } else if (dy < _current * Box.height) {
           if (_current == 0) return;
-          Color temp = _colors[_current];
+          Color temp = _colors[_current]!;
           _colors[_current] = _colors[_current - 1];
           _colors[_current - 1] = temp;
           _current--;
@@ -119,11 +119,11 @@ class Box extends StatelessWidget {
   final Function(Color) onDrag;
 
   Box({
-    Key key,
-    this.color,
-    this.x,
-    this.y,
-    this.onDrag,
+    Key? key,
+    required this.color,
+    required this.x,
+    required this.y,
+    required this.onDrag,
   }) : super(key: key);
 
   @override

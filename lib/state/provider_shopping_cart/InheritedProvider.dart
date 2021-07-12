@@ -15,8 +15,8 @@ class InheritedProvider<T> extends InheritedWidget {
   final T data;
 
   InheritedProvider({
-    @required this.data,
-    Widget child,
+    required this.data,
+    required Widget child,
   }) : super(child: child);
 
   @override
@@ -39,9 +39,9 @@ class ChangeNotifierProvider<T extends ChangeNotifier> extends StatefulWidget {
   final Widget child;
 
   const ChangeNotifierProvider({
-    Key key,
-    this.data,
-    this.child,
+    Key? key,
+    required this.data,
+    required this.child,
   }) : super(key: key);
 
   // 定义一个便捷方法，方便子树中的widget获取共享数据
@@ -55,7 +55,7 @@ class ChangeNotifierProvider<T extends ChangeNotifier> extends StatefulWidget {
         : context
             .getElementForInheritedWidgetOfExactType<InheritedProvider<T>>()
             ?.widget as InheritedProvider<T>;
-    return provider.data;
+    return provider!.data;
   }
 
   @override
@@ -113,13 +113,13 @@ class _ChangeNotifierProviderState<T extends ChangeNotifier>
 // 这是一个便捷类，会获得当前context和指定数据类型的Provider
 class Consumer<T> extends StatelessWidget {
   Consumer({
-    Key key,
-    @required this.builder,
+    Key? key,
+    required this.builder,
     this.child,
   })  : assert(builder != null),
         super(key: key);
 
-  final Widget child;
+  final Widget? child;
 
   final Widget Function(BuildContext context, T value) builder;
 

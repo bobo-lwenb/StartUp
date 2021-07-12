@@ -19,7 +19,7 @@ class _FlipCounterState extends State<FlipCounter> {
           child: TweenAnimationBuilder(
             duration: const Duration(milliseconds: 1000),
             tween: Tween<double>(begin: 7, end: 12),
-            builder: (BuildContext context, double value, Widget child) {
+            builder: (BuildContext context, double value, Widget? child) {
               final integer = value ~/ 1;
               final decimals = value - integer;
               return Stack(
@@ -35,7 +35,8 @@ class _FlipCounterState extends State<FlipCounter> {
                     top: (1 - decimals) * 100,
                     child: Opacity(
                       opacity: decimals,
-                      child: Text("${integer + 1}", style: TextStyle(fontSize: 100)),
+                      child: Text("${integer + 1}",
+                          style: TextStyle(fontSize: 100)),
                     ),
                   ),
                 ],

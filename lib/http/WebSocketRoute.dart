@@ -8,7 +8,7 @@ class WebSocketRoute extends StatefulWidget {
 
 class _WebSocketRouteState extends State<WebSocketRoute> {
   TextEditingController _controller = new TextEditingController();
-  IOWebSocketChannel channel;
+  late IOWebSocketChannel channel;
   String _text = '';
 
   @override
@@ -40,7 +40,7 @@ class _WebSocketRouteState extends State<WebSocketRoute> {
                 if (snapshot.hasError) {
                   _text = "网络不通...";
                 } else if (snapshot.hasData) {
-                  _text = "echo: " + snapshot.data;
+                  _text = "echo: ${snapshot.data}";
                 }
                 return new Padding(
                   padding: const EdgeInsets.symmetric(vertical: 24.0),

@@ -18,7 +18,7 @@ class _State extends State {
         return Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            child,
+            child!,
             Text('$value'),
             child,
           ],

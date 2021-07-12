@@ -7,9 +7,9 @@ class AnimatedBuilder2 extends StatefulWidget {
 
 class _AnimatedBuilder2State extends State<AnimatedBuilder2>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation opacityAnimation;
-  Animation heightAnimation;
+  late AnimationController _controller;
+  late Animation opacityAnimation;
+  late Animation heightAnimation;
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _AnimatedBuilder2State extends State<AnimatedBuilder2>
       body: Center(
         child: AnimatedBuilder(
           animation: _controller,
-          builder: (BuildContext context, Widget child) {
+          builder: (BuildContext context, Widget? child) {
             return Opacity(
               opacity: opacityAnimation.value,
               child: Container(

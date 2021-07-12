@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 /// 将widget分离出来
 class AnimatedImage extends AnimatedWidget {
   AnimatedImage({
-    Key key,
-    Animation<double> animation,
+    Key? key,
+    required Animation<double> animation,
   }) : super(key: key, listenable: animation);
 
   @override
   Widget build(BuildContext context) {
-    final Animation<double> animation = listenable;
+    final Animation<double> animation = listenable as Animation<double>;
     return new Center(
       child: Image.asset(
         "images/avatar.png",
@@ -26,14 +26,16 @@ class AnimatedWidgetTestRoute extends StatefulWidget {
   _ScaleAnimationRouteState createState() => new _ScaleAnimationRouteState();
 }
 
-class _ScaleAnimationRouteState extends State<AnimatedWidgetTestRoute> with SingleTickerProviderStateMixin {
-  Animation<double> animation;
-  AnimationController controller;
+class _ScaleAnimationRouteState extends State<AnimatedWidgetTestRoute>
+    with SingleTickerProviderStateMixin {
+  late Animation<double> animation;
+  late AnimationController controller;
 
   @override
   initState() {
     super.initState();
-    controller = new AnimationController(duration: const Duration(seconds: 3), vsync: this);
+    controller = new AnimationController(
+        duration: const Duration(seconds: 3), vsync: this);
     // 图片宽高从0变到300
     animation = new Tween(begin: 0.0, end: 300.0).animate(controller);
     // 启动动画

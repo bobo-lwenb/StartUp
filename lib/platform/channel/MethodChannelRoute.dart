@@ -9,7 +9,8 @@ class MethodChannelRoute extends StatefulWidget {
 }
 
 class _MethodChannelState extends State<MethodChannelRoute> {
-  static const _methodChannel = const MethodChannel('samples.flutter.io/battery');
+  static const _methodChannel =
+      const MethodChannel('samples.flutter.io/battery');
   String _batteryLevel = 'Unknown battery level.';
 
   @override
@@ -23,7 +24,7 @@ class _MethodChannelState extends State<MethodChannelRoute> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              RaisedButton(
+              ElevatedButton(
                 child: new Text('Get Battery Level'),
                 onPressed: _sendMsg,
               ),
@@ -52,9 +53,9 @@ class _MethodChannelState extends State<MethodChannelRoute> {
   /// 接收原生主动发送的消息
   void _reciveMsg() {
     _methodChannel.setMethodCallHandler((MethodCall call) async {
-      if (call?.method == 'getContent') {
+      if (call.method == 'getContent') {
         setState(() {
-          _batteryLevel = call?.arguments ?? '';
+          _batteryLevel = call.arguments ?? '';
         });
       }
     });

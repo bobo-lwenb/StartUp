@@ -16,7 +16,7 @@ class _HttpPageState extends State<HttpPage> {
       ),
       body: ListView(
         children: <Widget>[
-          OutlineButton(
+          OutlinedButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                 return HttpFuture();
@@ -24,7 +24,7 @@ class _HttpPageState extends State<HttpPage> {
             },
             child: Text('http和Future使用'),
           ),
-          OutlineButton(
+          OutlinedButton(
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                 return HttpFutureBuilder();

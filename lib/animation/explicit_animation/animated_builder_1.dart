@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 /// AnimatedBuilder正是将渲染逻辑分离出来
@@ -10,8 +9,8 @@ class AnimatedBuilder1 extends StatefulWidget {
 /// 需要继承TickerProvider，如果有多个AnimationController，则应该使用TickerProviderStateMixin。
 class _AnimationBuilder1State extends State<AnimatedBuilder1>
     with SingleTickerProviderStateMixin {
-  Animation<double> animation;
-  AnimationController controller;
+  late Animation<double> animation;
+  late AnimationController controller;
 
   @override
   void initState() {
@@ -40,7 +39,7 @@ class _AnimationBuilder1State extends State<AnimatedBuilder1>
         // AnimatedBuilder不仅可以从动画中分离出widget，也能把渲染过程抽象出来
         child: AnimatedBuilder(
           animation: animation,
-          builder: (BuildContext ctx, Widget child) {
+          builder: (BuildContext ctx, Widget? child) {
             return Center(
               child: Container(
                 height: animation.value,
@@ -68,7 +67,7 @@ class GrowTransition extends StatelessWidget {
   final Widget child;
   final Animation<double> animation;
 
-  GrowTransition({this.child, this.animation});
+  GrowTransition({required this.child, required this.animation});
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +75,7 @@ class GrowTransition extends StatelessWidget {
       child: AnimatedBuilder(
         child: child,
         animation: animation,
-        builder: (BuildContext ctx, Widget child) {
+        builder: (BuildContext ctx, Widget? child) {
           return Container(
             height: animation.value,
             width: animation.value,

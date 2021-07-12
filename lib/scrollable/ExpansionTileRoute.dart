@@ -27,7 +27,8 @@ class _ExpansionTileRouteState extends State<ExpansionTileRoute> {
     );
   }
 
-  _buildList() => CITY_NAMES.keys.map((key) => _buildItem(key, CITY_NAMES[key])).toList();
+  _buildList() =>
+      CITY_NAMES.keys.map((key) => _buildItem(key, CITY_NAMES[key]!)).toList();
 
   Widget _buildItem(String name, List<String> subNames) {
     return ExpansionTile(

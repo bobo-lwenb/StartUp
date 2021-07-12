@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 /// 渐变路由动画
 class FadeRoute extends PageRoute {
   FadeRoute({
-    @required this.builder,
+    required this.builder,
     this.transitionDuration = const Duration(milliseconds: 300),
     this.opaque = true,
     this.barrierDismissible = false,
-    this.barrierColor,
-    this.barrierLabel,
+    required this.barrierColor,
+    required this.barrierLabel,
     this.maintainState = true,
   });
 
@@ -33,12 +33,13 @@ class FadeRoute extends PageRoute {
   final bool maintainState;
 
   @override
-  Widget buildPage(BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation) =>
+  Widget buildPage(BuildContext context, Animation<double> animation,
+          Animation<double> secondaryAnimation) =>
       builder(context);
 
   @override
-  Widget buildTransitions(
-      BuildContext context, Animation<double> animation, Animation<double> secondaryAnimation, Widget child) {
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget child) {
     if (isActive) {
       return FadeTransition(
         opacity: animation,

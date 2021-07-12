@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 class DismissibleRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    List<String> itemDatas = new List<String>.generate(20, (i) => "Item ${i + 1}");
+    List<String> itemDatas =
+        new List<String>.generate(20, (i) => "Item ${i + 1}");
     return Scaffold(
       appBar: AppBar(
         title: Text('Dismissable'),
@@ -21,7 +22,8 @@ class DismissibleRoute extends StatelessWidget {
             // what to do after an item has been swiped away.
             onDismissed: (DismissDirection direction) {
               itemDatas.removeAt(index);
-              Scaffold.of(context).showSnackBar(SnackBar(content: Text("$item dismissed")));
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text("$item dismissed")));
             },
             // confirmDismiss: (DismissDirection direction) async {
             //   await showDialog(

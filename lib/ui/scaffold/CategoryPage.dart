@@ -5,8 +5,9 @@ class CategoryPage extends StatefulWidget {
   State<StatefulWidget> createState() => CategoryPageState();
 }
 
-class CategoryPageState extends State<CategoryPage> with SingleTickerProviderStateMixin {
-  TabController _tabController;
+class CategoryPageState extends State<CategoryPage>
+    with SingleTickerProviderStateMixin {
+  late TabController _tabController;
   List tabs = ["新闻", "历史", "图片"];
 
   @override

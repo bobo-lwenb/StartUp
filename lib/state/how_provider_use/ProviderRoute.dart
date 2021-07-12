@@ -32,7 +32,7 @@ class ProviderTest extends StatelessWidget {
           children: [
             Text("${Provider.of<String>(context)}"),
             Text("${context.watch<String>()}"),
-            FlatButton(
+            TextButton(
               onPressed: null,
               child: Icon(Icons.add),
             ),

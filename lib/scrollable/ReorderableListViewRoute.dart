@@ -48,7 +48,7 @@ class _RouteState extends State<ReorderableListViewRoute> {
 class Box extends StatelessWidget {
   final _color;
 
-  Box(this._color, {Key key}) : super(key: key);
+  Box(this._color, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

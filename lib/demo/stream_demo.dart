@@ -21,7 +21,7 @@ class StreamDemo {
   }
 
   // 讲方法的返回值声明为 Stream
-  Stream<String> timedCounter(Duration interval, [int maxCount]) async* {
+  Stream<String> timedCounter(Duration interval, int maxCount) async* {
     int i = 0;
     while (true) {
       await Future.delayed(interval);

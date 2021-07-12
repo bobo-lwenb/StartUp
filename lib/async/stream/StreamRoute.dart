@@ -58,11 +58,13 @@ class _StreamRouteState extends State<StreamRoute> {
   void _broadcastStream() {
     /// 广播Stream
     StreamController controller = StreamController.broadcast();
-    StreamSubscription sub1 = controller.stream.listen((value) => 'sub1: $value');
+    StreamSubscription sub1 =
+        controller.stream.listen((value) => 'sub1: $value');
     controller.sink.add(1);
     controller.sink.add(2);
 
-    StreamSubscription sub2 = controller.stream.listen((value) => 'sub2: $value');
+    StreamSubscription sub2 =
+        controller.stream.listen((value) => 'sub2: $value');
     controller.sink.add(3);
     controller.sink.add(4);
 
@@ -77,24 +79,24 @@ class _StreamRouteState extends State<StreamRoute> {
 /// 这些类型都是 Stream 中传递的数据类型
 class _MyTransformer<S, T> implements StreamTransformer<S, T> {
   // 用来生成一个新的 Stream 并且控制符合条件的数据
-  StreamController _controller;
+  StreamController? _controller;
 
-  StreamSubscription _subscription;
+  StreamSubscription? _subscription;
 
-  bool cancelOrError;
+  bool? cancelOrError;
 
   // 转换之前的 Stream
-  Stream<S> _stream;
+  Stream<S>? _stream;
 
   _MyTransformer({bool sync: false, this.cancelOrError}) {
     _controller = new StreamController<T>(
         onListen: _onListen,
         onCancel: _onCancel,
         onPause: () {
-          _subscription.pause();
+          _subscription?.pause();
         },
         onResume: () {
-          _subscription.resume();
+          _subscription?.resume();
         },
         sync: sync);
   }
@@ -102,26 +104,29 @@ class _MyTransformer<S, T> implements StreamTransformer<S, T> {
   _MyTransformer.broadcast({bool sync: false, this.cancelOrError}) {
     // 定义一个 StreamController，注意泛型类型为 T，也就是出参类型，因为
     // 我们是使用该 _controller 生成一个用来返回的新的 Stream<T>
-    _controller = new StreamController<T>.broadcast(onListen: _onListen, onCancel: _onCancel, sync: sync);
+    _controller = new StreamController<T>.broadcast(
+        onListen: _onListen, onCancel: _onCancel, sync: sync);
   }
 
   void _onListen() {
     // _stream 为转换之前的 Stream<S>
-    _subscription = _stream.listen(onData,
-        onError: _controller.addError, onDone: _controller.close, cancelOnError: cancelOrError);
+    _subscription = _stream?.listen(onData,
+        onError: _controller?.addError,
+        onDone: _controller?.close,
+        cancelOnError: cancelOrError);
   }
 
   void _onCancel() {
-    _subscription.cancel();
+    _subscription?.cancel();
     _subscription = null;
-    _controller.close();
+    _controller?.close();
   }
 
   // 数据转换
   void onData(S data) {
     if ((data as int) % 2 == 0) {
       // 将符合条件的数据添加到新的 Stream 中
-      _controller.sink.add(data);
+      _controller?.sink.add(data);
     }
   }
 
@@ -130,12 +135,11 @@ class _MyTransformer<S, T> implements StreamTransformer<S, T> {
   @override
   Stream<T> bind(Stream<S> stream) {
     this._stream = stream;
-    return _controller.stream;
+    return _controller?.stream as Stream<T>;
   }
 
   @override
   StreamTransformer<RS, RT> cast<RS, RT>() {
-    // TODO: implement cast
-    return null;
+    return null as StreamTransformer<RS, RT>;
   }
 }

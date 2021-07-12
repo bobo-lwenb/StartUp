@@ -8,14 +8,16 @@ class SnowMan extends StatefulWidget {
 }
 
 class _SnowManState extends State<SnowMan> with SingleTickerProviderStateMixin {
-  Paint _paint;
-  AnimationController _controller;
-  final List<Snowflake> _snowflakes = List.generate(100, (index) => Snowflake());
+  late Paint _paint;
+  late AnimationController _controller;
+  final List<Snowflake> _snowflakes =
+      List.generate(100, (index) => Snowflake());
 
   @override
   void initState() {
     _paint = Paint()..color = Colors.white;
-    _controller = AnimationController(duration: const Duration(seconds: 1), vsync: this);
+    _controller =
+        AnimationController(duration: const Duration(seconds: 1), vsync: this);
     _controller.repeat();
     super.initState();
   }
@@ -42,7 +44,7 @@ class _SnowManState extends State<SnowMan> with SingleTickerProviderStateMixin {
           ),
           child: AnimatedBuilder(
             animation: _controller,
-            builder: (BuildContext context, Widget child) {
+            builder: (BuildContext context, Widget? child) {
               _snowflakes.forEach((snowflake) => snowflake.fall());
               return CustomPaint(
                 painter: MyPainter(painter: _paint, snowflake: _snowflakes),
@@ -70,7 +72,8 @@ class _SnowManState extends State<SnowMan> with SingleTickerProviderStateMixin {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 8.0),
-            child: Text("雪人", style: TextStyle(fontSize: 22, color: Colors.white)),
+            child:
+                Text("雪人", style: TextStyle(fontSize: 22, color: Colors.white)),
           ),
         ],
       ),
@@ -82,15 +85,19 @@ class MyPainter extends CustomPainter {
   final Paint painter;
   final List<Snowflake> snowflake;
 
-  MyPainter({this.painter, this.snowflake});
+  MyPainter({required this.painter, required this.snowflake});
 
   @override
   void paint(Canvas canvas, Size size) {
     canvas.drawCircle(size.center(Offset(0, 150)), 50, painter);
-    canvas.drawOval(Rect.fromCenter(center: size.center(Offset(0, 365)), width: 200, height: 350), painter);
+    canvas.drawOval(
+        Rect.fromCenter(
+            center: size.center(Offset(0, 365)), width: 200, height: 350),
+        painter);
 
     snowflake.forEach((snowflake) {
-      canvas.drawCircle(Offset(snowflake.x, snowflake.y), snowflake.radius, painter);
+      canvas.drawCircle(
+          Offset(snowflake.x, snowflake.y), snowflake.radius, painter);
     });
   }
 

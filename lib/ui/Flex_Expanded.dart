@@ -9,7 +9,7 @@ class FlexAndExpanded extends StatelessWidget {
         title: Text('Flex和Expanded'),
       ),
       body: Card(
-        child: FlatButton(
+        child: TextButton(
           onPressed: () {
             print('clicked here');
           },

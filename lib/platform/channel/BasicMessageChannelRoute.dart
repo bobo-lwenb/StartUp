@@ -18,7 +18,7 @@ class _BasicMessageChannelState extends State<BasicMessageChannelRoute> {
       body: Center(
         child: Column(
           children: <Widget>[
-            FlatButton(
+            TextButton(
               onPressed: () {
                 var args = {
                   "method": "test",

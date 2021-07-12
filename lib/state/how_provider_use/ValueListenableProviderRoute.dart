@@ -5,8 +5,8 @@ class ValueListenableProviderRoute extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var bean = StringBean('value');
-    return ValueListenableProvider<String>(
-      create: (_) => bean,
+    return ValueListenableProvider<String>.value(
+      value: bean,
       child: ValueListenableTest(bean: bean),
     );
   }
@@ -15,7 +15,7 @@ class ValueListenableProviderRoute extends StatelessWidget {
 class ValueListenableTest extends StatelessWidget {
   final StringBean bean;
 
-  ValueListenableTest({Key key, @required this.bean}) : super(key: key);
+  ValueListenableTest({Key? key, required this.bean}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,7 @@ class ValueListenableTest extends StatelessWidget {
           children: [
             Text('the data is:'),
             ValueTest(),
-            FlatButton(
+            TextButton(
               onPressed: () {
                 bean.data = '123456';
               },

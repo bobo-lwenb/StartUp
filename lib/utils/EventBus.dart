@@ -7,20 +7,21 @@ class EventBus {
 
   factory EventBus() => _singleton;
 
-  var _emap = new Map<Object, List<EventCallback>>();
+  var _emap = Map<Object, List<EventCallback>>();
 
-  void on(eventName, EventCallback f) {
+  void on(eventName, EventCallback? f) {
     if (eventName == null || f == null) return;
-    _emap[eventName] ??= new List<EventCallback>();
-    _emap[eventName].add(f);
+    _emap[eventName] ??= List<EventCallback>.empty(growable: true);
+    _emap[eventName]?.add(f);
   }
 
-  void off(eventName, [EventCallback f]) {
+  void off(eventName, [EventCallback? f]) {
     if (eventName == null) return;
     var list = _emap[eventName];
     if (list == null) return;
     if (f == null) {
-      _emap[eventName] = null;
+      // _emap[eventName] = null;
+      _emap[eventName]?.clear();
     } else {
       _emap.remove(f);
     }
@@ -36,4 +37,4 @@ class EventBus {
   }
 }
 
-var bus = new EventBus();
+var bus = EventBus();

@@ -11,7 +11,7 @@ class WidgetsBindingState extends State<WidgetsBindingRoute>
     with WidgetsBindingObserver {
   @override
   void initState() {
-    WidgetsBinding.instance.addObserver(this);
+    WidgetsBinding.instance!.addObserver(this);
     super.initState();
   }
 
@@ -28,7 +28,7 @@ class WidgetsBindingState extends State<WidgetsBindingRoute>
   @override
   void dispose() {
     super.dispose();
-    WidgetsBinding.instance.removeObserver(this);
+    WidgetsBinding.instance!.removeObserver(this);
   }
 
   // 当主机告诉应用将新路线推送到导航器时调用。
@@ -68,7 +68,7 @@ class WidgetsBindingState extends State<WidgetsBindingRoute>
   // 当系统告知应用程序用户的语言环境已更改时调用。 例如，如果用户更改系统语言设置。
   // 此方法公开来自[Window.onLocaleChanged]的通知。
   @override
-  void didChangeLocales(List<Locale> locale) {
+  void didChangeLocales(List<Locale>? locale) {
     super.didChangeLocales(locale);
   }
 

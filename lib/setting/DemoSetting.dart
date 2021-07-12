@@ -51,7 +51,7 @@ class DemoSettingState extends State<DemoSetting> {
 
   Future<bool> _getState() async {
     SharedPreferences _sp = await SharedPreferences.getInstance();
-    bool state = _sp.getBool('route_state');
+    bool? state = _sp.getBool('route_state');
     return state == null ? false : state;
   }
 }

@@ -25,7 +25,7 @@ class _State extends State<LayoutConstraints> {
         builder: (context, constraints) {
           debugPrint("$constraints");
           debugPrint(
-              WidgetsBinding.instance.window.devicePixelRatio.toString());
+              WidgetsBinding.instance!.window.devicePixelRatio.toString());
           return container;
         },
       ),

@@ -24,13 +24,19 @@ class DioDemo {
 
     _dio.interceptors.add(CookieManager(CookieJar()));
     _dio.interceptors.add(InterceptorsWrapper(
-        onRequest: (RequestOptions options) async {
-          _dio.reject("");
-        },
-        onResponse: (Response e) async {
-          _dio.reject("");
-        },
-        onError: (DioError e) async {}));
+      onRequest: (
+        RequestOptions options,
+        RequestInterceptorHandler handler,
+      ) {},
+      onResponse: (
+        Response e,
+        ResponseInterceptorHandler handler,
+      ) {},
+      onError: (
+        DioError e,
+        ErrorInterceptorHandler handler,
+      ) {},
+    ));
     _dio.interceptors.add(LogInterceptor());
   }
 

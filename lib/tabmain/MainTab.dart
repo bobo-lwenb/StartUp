@@ -14,7 +14,7 @@ class MainTab extends StatefulWidget {
 class _MainTabState extends State<MainTab> {
   int _tabIndex = 0;
   var _controller;
-  DateTime _lastPress;
+  DateTime? _lastPress;
 
   @override
   void initState() {
@@ -42,7 +42,8 @@ class _MainTabState extends State<MainTab> {
           },
         ),
         onWillPop: () async {
-          if (_lastPress == null || DateTime.now().difference(_lastPress) > Duration(seconds: 1)) {
+          if (_lastPress == null ||
+              DateTime.now().difference(_lastPress!) > Duration(seconds: 1)) {
             _lastPress = DateTime.now();
             Fluttertoast.showToast(msg: 'Press again to exit');
             return false;

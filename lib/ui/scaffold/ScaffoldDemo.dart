@@ -11,7 +11,7 @@ class ScaffoldDemo extends StatefulWidget {
 
 class _ScaffoldDemoState extends State<ScaffoldDemo>
     with SingleTickerProviderStateMixin {
-  PageController _controller;
+  late PageController _controller;
   int _index = 0;
 
   @override

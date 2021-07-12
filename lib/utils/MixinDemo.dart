@@ -1,5 +1,5 @@
 abstract class A {
-  int aa;
+  int? aa;
 
   void a() {
     print('a');
@@ -10,29 +10,23 @@ abstract class A {
 
 class A1 extends A {
   @override
-  void a1() {
-    // TODO: implement a1
-  }
+  void a1() {}
 }
 
 /// B实现A的话，则需要重写A中的方法和属性
 class B implements A {
   @override
-  int aa;
+  int? aa;
 
   @override
-  void a() {
-    // TODO: implement a
-  }
+  void a() {}
 
   @override
-  void a1() {
-    // TODO: implement a1
-  }
+  void a1() {}
 }
 
 class C {
-  int cc;
+  int? cc;
 
   void c() {
     print('c');
@@ -45,17 +39,13 @@ class C1 extends C {
 
 class D implements B {
   @override
-  int aa;
+  int? aa;
 
   @override
-  void a() {
-    // TODO: implement a
-  }
+  void a() {}
 
   @override
-  void a1() {
-    // TODO: implement a1
-  }
+  void a1() {}
 }
 
 class E extends A with C {
@@ -64,7 +54,5 @@ class E extends A with C {
   c();
 
   @override
-  void a1() {
-    // TODO: implement a1
-  }
+  void a1() {}
 }

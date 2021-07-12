@@ -16,7 +16,8 @@ class PlatFormRoute extends StatelessWidget {
               children: <Widget>[
                 _item(context, "MethodChannel", MethodChannelRoute()),
                 _item(context, "EventChannel", EventChannelRoute()),
-                _item(context, "BasicMessageChannel", BasicMessageChannelRoute()),
+                _item(
+                    context, "BasicMessageChannel", BasicMessageChannelRoute()),
               ],
             ),
           ),
@@ -24,7 +25,7 @@ class PlatFormRoute extends StatelessWidget {
   }
 
   _item(BuildContext context, String title, route) {
-    return RaisedButton(
+    return ElevatedButton(
         child: Text(title),
         onPressed: () {
           Navigator.of(context).push(

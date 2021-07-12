@@ -9,13 +9,16 @@ class EventChannelRoute extends StatefulWidget {
 }
 
 class _EventChannelState extends State<EventChannelRoute> {
-  static const _eventChannel = const EventChannel('samples.flutter.io/EventChannel');
-  String showMsg;
-  StreamSubscription _streamSubscription;
+  static const _eventChannel =
+      const EventChannel('samples.flutter.io/EventChannel');
+  late String showMsg;
+  late StreamSubscription _streamSubscription;
 
   @override
   void initState() {
-    _streamSubscription = _eventChannel.receiveBroadcastStream().listen(_onToDart, onError: (_onToDartError));
+    _streamSubscription = _eventChannel
+        .receiveBroadcastStream()
+        .listen(_onToDart, onError: (_onToDartError));
     super.initState();
   }
 
@@ -34,7 +37,7 @@ class _EventChannelState extends State<EventChannelRoute> {
                 TextField(
                   onChanged: _onTextChanged,
                 ),
-                FlatButton(
+                TextButton(
                   onPressed: () {},
                   child: Text('click'),
                 ),

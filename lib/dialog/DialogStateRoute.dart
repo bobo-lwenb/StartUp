@@ -24,8 +24,8 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
                 return OutlinedButton(
                   child: Text('DialogState'),
                   onPressed: () async {
-                    bool result = await _showDeleteConfirmDialog3();
-                    Scaffold.of(context).showSnackBar(
+                    bool? result = await _showDeleteConfirmDialog3();
+                    ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
                         content: Text('$result'),
                         action: SnackBarAction(
@@ -41,7 +41,7 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
             OutlinedButton(
               child: Text("显示底部菜单列表"),
               onPressed: () async {
-                int type = await _showModalBottomSheet();
+                int? type = await _showModalBottomSheet();
                 print(type);
               },
             ),
@@ -61,7 +61,7 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
     );
   }
 
-  Future<bool> _showDeleteConfirmDialog1() {
+  Future<bool?> _showDeleteConfirmDialog1() {
     bool _withTree = false;
     return showDialog<bool>(
       context: context,
@@ -105,7 +105,7 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
     );
   }
 
-  Future<bool> _showDeleteConfirmDialog2() {
+  Future<bool?> _showDeleteConfirmDialog2() {
     bool _withTree = false;
     return showDialog<bool>(
       context: context,
@@ -125,12 +125,12 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
                     builder: (context, _setState) {
                       return Checkbox(
                         value: _withTree,
-                        onChanged: (bool value) {
+                        onChanged: (bool? value) {
                           //_setState方法实际就是该StatefulWidget的setState方法，
                           //调用后builder方法会重新被调用
                           _setState(() {
                             //更新选中状态
-                            _withTree = value;
+                            _withTree = value!;
                           });
                         },
                       );
@@ -158,7 +158,7 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
     );
   }
 
-  Future<bool> _showDeleteConfirmDialog3() {
+  Future<bool?> _showDeleteConfirmDialog3() {
     bool _withTree = false;
     return showDialog<bool>(
       context: context,
@@ -179,11 +179,11 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
                     builder: (BuildContext context) {
                       return Checkbox(
                         value: _withTree,
-                        onChanged: (bool value) {
+                        onChanged: (bool? value) {
                           // 此时context为对话框UI的根Element，我们
                           // 直接将对话框UI对应的Element标记为dirty
                           (context as Element).markNeedsBuild();
-                          _withTree = value;
+                          _withTree = value!;
                         },
                       );
                     },
@@ -210,7 +210,7 @@ class _DialogStateRouteState extends State<DialogStateRoute> {
     );
   }
 
-  Future<int> _showModalBottomSheet() {
+  Future<int?> _showModalBottomSheet() {
     return showModalBottomSheet<int>(
       context: context,
       builder: (BuildContext context) {

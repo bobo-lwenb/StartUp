@@ -21,11 +21,11 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
           children: <Widget>[
             Builder(
               builder: (BuildContext context) {
-                return OutlineButton(
+                return OutlinedButton(
                     child: Text('AlertDialog'),
                     onPressed: () async {
-                      bool delete = await _showAlertDialog();
-                      Scaffold.of(context).showSnackBar(SnackBar(
+                      bool? delete = await _showAlertDialog();
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(delete.toString()),
                         action: SnackBarAction(
                           label: 'OK',
@@ -37,12 +37,12 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
             ),
             Builder(
               builder: (BuildContext context) {
-                return OutlineButton(
+                return OutlinedButton(
                   child: Text('SimpleDialog'),
                   onPressed: () async {
-                    String result = await _showSimpleDialog();
-                    Scaffold.of(context).showSnackBar(SnackBar(
-                      content: Text(result),
+                    String? result = await _showSimpleDialog();
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(result!),
                       action: SnackBarAction(
                         label: 'OK',
                         onPressed: () {},
@@ -54,11 +54,11 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
             ),
             Builder(
               builder: (BuildContext context) {
-                return OutlineButton(
+                return OutlinedButton(
                   child: Text('Dialog'),
                   onPressed: () async {
-                    int index = await _showDialog();
-                    Scaffold.of(context).showSnackBar(SnackBar(
+                    int? index = await _showDialog();
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('$index'),
                       action: SnackBarAction(
                         label: 'OK',
@@ -71,21 +71,21 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
             ),
             Builder(
               builder: (BuildContext context) {
-                return OutlineButton(
+                return OutlinedButton(
                   child: Text('CustomDialog'),
                   onPressed: () async {
-                    bool result = await _showCustomDialog<bool>(
+                    bool? result = await _showCustomDialog<bool>(
                       context: context,
                       builder: (context) {
                         return AlertDialog(
                           title: Text("提示"),
                           content: Text("您确定要删除当前文件吗?"),
                           actions: <Widget>[
-                            FlatButton(
+                            TextButton(
                               child: Text("取消"),
                               onPressed: () => Navigator.of(context).pop(),
                             ),
-                            FlatButton(
+                            TextButton(
                               child: Text("删除"),
                               onPressed: () {
                                 // 执行删除操作
@@ -96,7 +96,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
                         );
                       },
                     );
-                    Scaffold.of(context).showSnackBar(SnackBar(
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                       content: Text('$result'),
                       action: SnackBarAction(
                         label: 'OK',
@@ -109,7 +109,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
             ),
             Builder(
               builder: (BuildContext context) {
-                return OutlineButton(
+                return OutlinedButton(
                   child: Text('StateDialog'),
                   onPressed: () async {
                     bool delete = await _showDeleteDialog();
@@ -124,7 +124,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
   }
 
   /// 显示AlertDialog
-  Future<bool> _showAlertDialog() {
+  Future<bool?> _showAlertDialog() {
     return showDialog<bool>(
       context: context,
       builder: (context) {
@@ -132,11 +132,11 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
           title: const Text('提示'),
           content: Text('您确定要删除当前文件吗?'),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text('取消'),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            FlatButton(
+            TextButton(
               child: Text('确认 '),
               onPressed: () => Navigator.of(context).pop(true),
             )
@@ -147,7 +147,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
   }
 
   /// 显示SimpleDialog
-  Future<String> _showSimpleDialog() {
+  Future<String?> _showSimpleDialog() {
     return showDialog<String>(
       context: context,
       builder: (context) {
@@ -179,7 +179,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
   }
 
   /// 显示Dialog
-  Future<int> _showDialog() {
+  Future<int?> _showDialog() {
     return showDialog<int>(
         context: context,
         builder: (context) {
@@ -209,10 +209,10 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
   }
 
   /// 自定义Dialog
-  Future<T> _showCustomDialog<T>({
-    @required BuildContext context,
+  Future<T?> _showCustomDialog<T>({
+    required BuildContext context,
     bool barrierDismissible = true,
-    WidgetBuilder builder,
+    required WidgetBuilder builder,
   }) {
     final ThemeData theme = Theme.of(context);
     return showGeneralDialog<T>(
@@ -223,9 +223,7 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
         return SafeArea(
           child: Builder(
             builder: (BuildContext context) {
-              return theme != null
-                  ? Theme(data: theme, child: pageChild)
-                  : pageChild;
+              return Theme(data: theme, child: pageChild);
             },
           ),
         );
@@ -291,9 +289,9 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
                     builder: (context) {
                       return Checkbox(
                         value: withTree,
-                        onChanged: (bool value) {
+                        onChanged: (bool? value) {
                           (context as Element).markNeedsBuild();
-                          withTree = value;
+                          withTree = value!;
                         },
                       );
                     },
@@ -303,11 +301,11 @@ class _DialogTestRouteState extends State<DialogTestRoute> {
             ],
           ),
           actions: <Widget>[
-            FlatButton(
+            TextButton(
               child: Text("取消"),
               onPressed: () => Navigator.of(context).pop(),
             ),
-            FlatButton(
+            TextButton(
               child: Text("删除"),
               onPressed: () {
                 //执行删除操作

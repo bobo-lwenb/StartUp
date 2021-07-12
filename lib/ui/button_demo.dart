@@ -95,7 +95,7 @@ class _ButtonDemoState extends State<ButtonDemo> {
     );
   }
 
-  ButtonStyle style;
+  late ButtonStyle style;
 
   @override
   void initState() {
@@ -128,7 +128,7 @@ class _ButtonDemoState extends State<ButtonDemo> {
   }
 
   Widget _buildFlatButton() {
-    return FlatButton(
+    return TextButton(
       onPressed: () {},
       child: Text("FlatBuuton"),
     );
@@ -143,7 +143,7 @@ class _ButtonDemoState extends State<ButtonDemo> {
   }
 
   Widget _buildOutlineButton() {
-    return OutlineButton(
+    return OutlinedButton(
       onPressed: () {},
       child: Text("OutlineButton"),
     );
@@ -158,7 +158,7 @@ class _ButtonDemoState extends State<ButtonDemo> {
   }
 
   Widget _buildRasedButton() {
-    return RaisedButton(
+    return ElevatedButton(
       onPressed: () {},
       child: Text("RaisedButton"),
     );

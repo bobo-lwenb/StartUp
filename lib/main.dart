@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         const Locale('zh', "CN"),
       ],
       localeListResolutionCallback: (locales, supportedLocales) {},
-      onGenerateTitle: (context) => DemoLocalizations.of(context).titleDemo,
+      onGenerateTitle: (context) => DemoLocalizations.of(context)!.titleDemo,
       theme: ThemeData(
         primarySwatch: Colors.red,
         visualDensity: VisualDensity.adaptivePlatformDensity,
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
               FocusScopeNode currFocus = FocusScope.of(context);
               if (!currFocus.hasPrimaryFocus &&
                   currFocus.focusedChild != null) {
-                FocusManager.instance.primaryFocus.unfocus();
+                FocusManager.instance.primaryFocus!.unfocus();
               }
             },
             child: child,

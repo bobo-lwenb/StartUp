@@ -37,7 +37,8 @@ class BusinessState extends State<BusinessPage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text('You have pushed the button this many times:', style: TextStyle(fontSize: 18)),
+                  Text('You have pushed the button this many times:',
+                      style: TextStyle(fontSize: 18)),
                   Text(
                     '$_counter',
                     style: Theme.of(context).textTheme.display1,
@@ -48,7 +49,7 @@ class BusinessState extends State<BusinessPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                OutlineButton(
+                OutlinedButton(
                   onPressed: () {
                     _incrementCounter(true);
                   },
@@ -57,7 +58,7 @@ class BusinessState extends State<BusinessPage> {
                 SizedBox(
                   width: 10,
                 ),
-                OutlineButton(
+                OutlinedButton(
                   onPressed: () {
                     _incrementCounter(false);
                   },

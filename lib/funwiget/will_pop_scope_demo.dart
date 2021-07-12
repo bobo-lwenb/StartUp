@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class WillPopScopeDemo extends StatefulWidget {
-  const WillPopScopeDemo({Key key}) : super(key: key);
+  const WillPopScopeDemo({Key? key}) : super(key: key);
 
   @override
   _WillPopScopeDemoState createState() => _WillPopScopeDemoState();

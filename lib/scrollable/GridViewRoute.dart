@@ -36,7 +36,7 @@ class _GridViewState extends State<GridViewRoute> {
 
   bool isLoadMore = false;
 
-  ScrollController _controller;
+  late ScrollController _controller;
 
   @override
   void initState() {

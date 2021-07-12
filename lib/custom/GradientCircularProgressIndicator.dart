@@ -13,7 +13,7 @@ class GradientCircularProgressIndicator extends StatelessWidget {
   final bool strokeCapRound;
 
   /// 当前进度，取值范围 [0.0-1.0]
-  final double value;
+  final double? value;
 
   /// 进度条背景色
   final Color backgroundColor;
@@ -25,16 +25,16 @@ class GradientCircularProgressIndicator extends StatelessWidget {
   final List<Color> colors;
 
   /// 渐变色的终止点，对应colors属性
-  final List<double> stops;
+  final List<double>? stops;
 
   GradientCircularProgressIndicator(
       {this.strokeWidth = 2.0,
-      @required this.radius,
+      required this.radius,
       this.strokeCapRound = false,
       this.value,
       this.backgroundColor = const Color(0xFFEEEEEE),
       this.totalAngle = 2 * pi,
-      @required this.colors,
+      required this.colors,
       this.stops});
 
   @override
@@ -58,7 +58,7 @@ class GradientCircularProgressIndicator extends StatelessWidget {
             stokeWidth: strokeWidth,
             strokeCapRound: strokeCapRound,
             backgroundColor: backgroundColor,
-            value: value,
+            value: value!,
             total: totalAngle,
             radius: radius,
             colors: _colors,
@@ -75,23 +75,23 @@ class _GradientCircularProgressPainter extends CustomPainter {
       this.backgroundColor = const Color(0xFFEEEEEE),
       this.radius,
       this.total = 2 * pi,
-      @required this.colors,
+      required this.colors,
       this.stops,
       this.value});
 
   final double stokeWidth;
   final bool strokeCapRound;
-  final double value;
+  final double? value;
   final Color backgroundColor;
   final List<Color> colors;
   final double total;
-  final double radius;
-  final List<double> stops;
+  final double? radius;
+  final List<double>? stops;
 
   @override
   void paint(Canvas canvas, Size size) {
     if (radius != null) {
-      size = Size.fromRadius(radius);
+      size = Size.fromRadius(radius!);
     }
     double _offset = stokeWidth / 2.0;
     double _value = (value ?? .0);
@@ -102,7 +102,8 @@ class _GradientCircularProgressPainter extends CustomPainter {
       _start = asin(stokeWidth / (size.width - stokeWidth));
     }
 
-    Rect rect = Offset(_offset, _offset) & Size(size.width - stokeWidth, size.height - stokeWidth);
+    Rect rect = Offset(_offset, _offset) &
+        Size(size.width - stokeWidth, size.height - stokeWidth);
 
     var paint = Paint()
       ..strokeCap = strokeCapRound ? StrokeCap.round : StrokeCap.butt

@@ -14,7 +14,7 @@ class _SortListState extends State<SortList> {
     Colors.blue[900],
   ];
 
-  int _slot;
+  int _slot = 0;
 
   _shuffle() {
     setState(() => _colors.shuffle());
@@ -51,7 +51,7 @@ class _SortListState extends State<SortList> {
         child: Stack(
           children: List.generate(_colors.length, (i) {
             return Box(
-              color: _colors[i],
+              color: _colors[i]!,
               x: 70,
               y: i * Box.height,
               onDrag: (Color color) {
@@ -81,7 +81,13 @@ class Box extends StatelessWidget {
   final double x, y;
   final Function(Color) onDrag;
 
-  Box({this.color, this.x, this.y, this.onDrag, Key key}) : super(key: key);
+  Box({
+    Key? key,
+    required this.color,
+    required this.x,
+    required this.y,
+    required this.onDrag,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

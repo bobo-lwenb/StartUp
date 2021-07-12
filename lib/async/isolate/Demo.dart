@@ -2,18 +2,20 @@ import 'dart:async';
 import 'dart:isolate';
 
 ///双向传递
-Isolate isolate;
+late Isolate isolate;
 
 loadData() async {
   //port1的调用者，以便接收Isolate端的port2
   ReceivePort receivePort1 = ReceivePort();
   // 通过spawn新建一个Isolate，绑定方法并传递app端port1
-  isolate = await Isolate.spawn(dataLoader, receivePort1.sendPort); //spawn(port1)
+  isolate =
+      await Isolate.spawn(dataLoader, receivePort1.sendPort); //spawn(port1)
 
   // 获取Isolate端回传的port2
   SendPort sendPort = await receivePort1.first;
   //把要做的任务从Isolate端的port2传递过去
-  List dataList = await sendReceive(sendPort, 'https://jsonplaceholder.typicode.com/posts');
+  List dataList =
+      await sendReceive(sendPort, 'https://jsonplaceholder.typicode.com/posts');
   print('dataList $dataList');
 }
 
@@ -52,19 +54,19 @@ Future sendReceive(SendPort sendPort, String url) {
   // port3的调用者，以便接收任务返回值
   ReceivePort receivePort3 = ReceivePort();
   // 发送任务数据到Isolate端的port2的调用者
-  sendPort.send([url, receivePort3.sendPort]); //port2.send(tohandletask, port3);
+  sendPort
+      .send([url, receivePort3.sendPort]); //port2.send(tohandletask, port3);
   // 接收到任务返回值
   return receivePort3.first;
 }
 
 stop() {
   isolate.kill(priority: Isolate.immediate);
-  isolate = null;
 }
 
 ///****************************///
 ///单向传递
-Isolate isolate1;
+late Isolate isolate1;
 int i = 1;
 
 void start() async {
@@ -90,5 +92,4 @@ void runTimer(SendPort port) {
 
 stop1() {
   isolate1.kill(priority: Isolate.immediate);
-  isolate1 = null;
 }

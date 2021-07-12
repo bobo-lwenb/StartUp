@@ -27,7 +27,7 @@ class _State extends State<Inherited> {
     Widget one = Row(
       children: [
         Counter1(),
-        RaisedButton(
+        ElevatedButton(
           onPressed: () {
             setState(() {
               _num1++;
@@ -40,7 +40,7 @@ class _State extends State<Inherited> {
     Widget two = Row(
       children: [
         Counter2(),
-        RaisedButton(
+        ElevatedButton(
           onPressed: () {
             setState(() {
               _num2++;
@@ -73,14 +73,12 @@ class Counter1 extends StatefulWidget {
 class _State1 extends State<Counter1> {
   @override
   Widget build(BuildContext context) {
-    print('Counter1');
-    InheritedModelDemo model = InheritedModelDemo.of(context, 'num1');
-    return Text('${model.num1}');
+    InheritedModelDemo? model = InheritedModelDemo.of(context, 'num1');
+    return Text('${model?.num1}');
   }
 
   @override
   void didChangeDependencies() {
-    print('1111111');
     super.didChangeDependencies();
   }
 }
@@ -93,14 +91,12 @@ class Counter2 extends StatefulWidget {
 class _State2 extends State<Counter2> {
   @override
   Widget build(BuildContext context) {
-    print('Counter2');
-    InheritedModelDemo model = InheritedModelDemo.of(context, 'num2');
-    return Text('${model.num2}');
+    InheritedModelDemo? model = InheritedModelDemo.of(context, 'num2');
+    return Text('${model?.num2}');
   }
 
   @override
   void didChangeDependencies() {
-    print('2222222');
     super.didChangeDependencies();
   }
 }

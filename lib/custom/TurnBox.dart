@@ -2,23 +2,28 @@ import 'package:flutter/material.dart';
 
 class TurnBox extends StatefulWidget {
   final double turns; // 旋转的“圈”数,一圈为360度，如0.25圈即90度
-  final int speed;
+  final int? speed;
   final Widget child;
 
-  const TurnBox({Key key, this.turns, this.speed, this.child}) : super(key: key);
+  const TurnBox({
+    Key? key,
+    required this.turns,
+    this.speed,
+    required this.child,
+  }) : super(key: key);
 
   @override
   _TurnBoxState createState() => _TurnBoxState();
 }
 
 class _TurnBoxState extends State<TurnBox> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    _controller =
-        new AnimationController(vsync: this, lowerBound: -double.infinity, upperBound: double.infinity);
+    _controller = new AnimationController(
+        vsync: this, lowerBound: -double.infinity, upperBound: double.infinity);
     _controller.value = widget.turns;
   }
 

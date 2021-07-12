@@ -27,10 +27,11 @@ class _State extends State<HeroAnimationRoute> {
             ),
           ),
           onTap: () {
-            Navigator.push(context, PageRouteBuilder(
-                pageBuilder: (BuildContext context, Animation animation, Animation secondaryAnimation) {
+            Navigator.push(context, PageRouteBuilder(pageBuilder:
+                (BuildContext context, Animation animation,
+                    Animation secondaryAnimation) {
               return FadeTransition(
-                opacity: animation,
+                opacity: animation.value,
                 child: Scaffold(
                   appBar: AppBar(
                     title: Text('??'),

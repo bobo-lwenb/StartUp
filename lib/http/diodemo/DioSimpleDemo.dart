@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 
 class DioSimpleDemo {
-  Dio _dio;
+  late Dio _dio;
 
   DioSimpleDemo() {
     _dio = Dio();
@@ -13,17 +13,21 @@ class DioSimpleDemo {
     /// get
     Response response = await _dio.get("/test?id=12&name=wendu");
     // 请求参数也可以通过对象传递，上面的代码等同于：
-    response = await _dio.get("/test", queryParameters: {"id": 12, "name": "wendu"});
+    response =
+        await _dio.get("/test", queryParameters: {"id": 12, "name": "wendu"});
     print(response.data.toString());
 
     /// post
-    Response response1 = await _dio.post("/test", data: {"id": 12, "name": "wendu"});
+    Response response1 =
+        await _dio.post("/test", data: {"id": 12, "name": "wendu"});
 
     /// 发起多个并发请求
-    List<Response> response2 = await Future.wait([_dio.post("/info"), _dio.get("/token")]);
+    List<Response> response2 =
+        await Future.wait([_dio.post("/info"), _dio.get("/token")]);
 
     /// 下载文件
-    Response response3 = await _dio.download("https://www.google.com/", "./xx.html");
+    Response response3 =
+        await _dio.download("https://www.google.com/", "./xx.html");
 
     /// 以流的方式接收响应数据
     Response<ResponseBody> response4 = await _dio.post<ResponseBody>(
@@ -48,7 +52,8 @@ class DioSimpleDemo {
     FormData formData1 = FormData.fromMap({
       "name": "wendux",
       "age": 25,
-      "file": await MultipartFile.fromFile("./text.txt", filename: "upload.txt"),
+      "file":
+          await MultipartFile.fromFile("./text.txt", filename: "upload.txt"),
       "files": [
         await MultipartFile.fromFile("./text1.txt", filename: "text1.txt"),
         await MultipartFile.fromFile("./text2.txt", filename: "text2.txt"),

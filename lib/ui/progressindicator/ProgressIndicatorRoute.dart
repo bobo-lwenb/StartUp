@@ -6,12 +6,14 @@ class IndicatorRoute extends StatefulWidget {
   _IndicatorRouteState createState() => _IndicatorRouteState();
 }
 
-class _IndicatorRouteState extends State<IndicatorRoute> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+class _IndicatorRouteState extends State<IndicatorRoute>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
 
   @override
   void initState() {
-    _controller = AnimationController(vsync: this, duration: Duration(seconds: 3));
+    _controller =
+        AnimationController(vsync: this, duration: Duration(seconds: 3));
     _controller.addListener(() => setState(() => {}));
     _controller.forward();
     super.initState();
@@ -60,7 +62,8 @@ class _IndicatorRouteState extends State<IndicatorRoute> with SingleTickerProvid
               padding: EdgeInsets.all(10),
               child: LinearProgressIndicator(
                 backgroundColor: Colors.grey[200],
-                valueColor: ColorTween(begin: Colors.grey, end: Colors.blue).animate(_controller), // 从灰色变成蓝色
+                valueColor: ColorTween(begin: Colors.grey, end: Colors.blue)
+                    .animate(_controller), // 从灰色变成蓝色
                 value: _controller.value,
               ),
             ),

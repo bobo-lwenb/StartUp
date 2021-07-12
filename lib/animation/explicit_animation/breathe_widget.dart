@@ -7,11 +7,11 @@ class BreatheWidget extends StatefulWidget {
 
 class _BreatheWidgetState extends State<BreatheWidget>
     with SingleTickerProviderStateMixin {
-  AnimationController _controller;
-  Animation _animation4;
-  Animation _animation7Opacity1;
-  Animation _animation7Opacity2;
-  Animation _animation8;
+  late AnimationController _controller;
+  late Animation _animation4;
+  late Animation _animation7Opacity1;
+  late Animation _animation7Opacity2;
+  late Animation _animation8;
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _BreatheWidgetState extends State<BreatheWidget>
       body: Center(
         child: AnimatedBuilder(
           animation: _controller,
-          builder: (BuildContext context, Widget child) {
+          builder: (BuildContext context, Widget? child) {
             return Opacity(
               opacity: _controller.value <= 0.375
                   ? _animation7Opacity1.value
@@ -55,7 +55,7 @@ class _BreatheWidgetState extends State<BreatheWidget>
                   shape: BoxShape.circle,
                   color: Colors.green,
                   gradient: RadialGradient(
-                    colors: [Colors.green[500], Colors.green[100]],
+                    colors: [Colors.green[500]!, Colors.green[100]!],
                     stops: _controller.value <= 0.2
                         ? [_animation4.value, _animation4.value + 0.1]
                         : [_animation8.value, _animation8.value + 0.1],

@@ -2,17 +2,19 @@ import 'package:flutter/material.dart';
 
 class WillPopScopeTestRoute extends StatefulWidget {
   @override
-  _WillPopScopeTestRouteState createState() => new _WillPopScopeTestRouteState();
+  _WillPopScopeTestRouteState createState() =>
+      new _WillPopScopeTestRouteState();
 }
 
 class _WillPopScopeTestRouteState extends State<WillPopScopeTestRoute> {
-  DateTime _lastPressedAt;
+  DateTime? _lastPressedAt;
 
   @override
   Widget build(BuildContext context) {
     return new WillPopScope(
       onWillPop: () async {
-        if (_lastPressedAt == null || DateTime.now().difference(_lastPressedAt) > Duration(seconds: 1)) {
+        if (_lastPressedAt == null ||
+            DateTime.now().difference(_lastPressedAt!) > Duration(seconds: 1)) {
           _lastPressedAt = DateTime.now();
           return false;
         }

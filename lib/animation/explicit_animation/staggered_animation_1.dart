@@ -8,13 +8,15 @@ class StaggeredAnimation1 extends StatefulWidget {
   _StaggeredAnimation1State createState() => _StaggeredAnimation1State();
 }
 
-class _StaggeredAnimation1State extends State<StaggeredAnimation1> with TickerProviderStateMixin {
-  AnimationController _controller;
+class _StaggeredAnimation1State extends State<StaggeredAnimation1>
+    with TickerProviderStateMixin {
+  late AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    this._controller = AnimationController(duration: const Duration(seconds: 3), vsync: this);
+    this._controller =
+        AnimationController(duration: const Duration(seconds: 3), vsync: this);
   }
 
   @override
@@ -61,16 +63,16 @@ class _StaggeredAnimation1State extends State<StaggeredAnimation1> with TickerPr
 class StaggerAnimation extends StatefulWidget {
   final Animation<double> controller;
 
-  StaggerAnimation({Key key, this.controller}) : super(key: key);
+  StaggerAnimation({Key? key, required this.controller}) : super(key: key);
 
   @override
   _StaggerAnimationState createState() => _StaggerAnimationState();
 }
 
 class _StaggerAnimationState extends State<StaggerAnimation> {
-  Animation<double> height;
-  Animation<EdgeInsets> padding;
-  Animation<Color> color;
+  late Animation<double> height;
+  late Animation<EdgeInsets> padding;
+  late Animation<Color?> color;
 
   @override
   void initState() {
@@ -124,7 +126,7 @@ class _StaggerAnimationState extends State<StaggerAnimation> {
     );
   }
 
-  Widget _buildAnimation(BuildContext context, Widget child) {
+  Widget _buildAnimation(BuildContext context, Widget? child) {
     return Container(
       child: Container(
         color: color.value,

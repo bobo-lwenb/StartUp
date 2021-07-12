@@ -7,7 +7,7 @@ class Person {
   String name;
   String age;
 
-  Person({this.name, this.age});
+  Person({required this.name, required this.age});
 
   factory Person.fromJson(Map<String, dynamic> json) => _$PersonFromJson(json);
 

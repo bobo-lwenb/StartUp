@@ -8,7 +8,7 @@ class DemoTab extends StatefulWidget {
 }
 
 class DemoTabState extends State<DemoTab> with SingleTickerProviderStateMixin {
-  TabController _tabController;
+  late TabController _tabController;
   final List<String> _title = ["Flutter", "Dart", "Kotlin"];
 
   @override
@@ -30,7 +30,7 @@ class DemoTabState extends State<DemoTab> with SingleTickerProviderStateMixin {
         leading: Builder(builder: (context) {
           return IconButton(
             icon: Icon(Icons.dehaze, color: Colors.white),
-            onPressed: () => mainTabKey.currentState.openDrawer(),
+            onPressed: () => mainTabKey.currentState?.openDrawer(),
           );
         }),
         title: Text('Demo'),

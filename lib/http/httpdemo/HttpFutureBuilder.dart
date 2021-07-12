@@ -22,23 +22,19 @@ class _HttpFutureBuilderState extends State<HttpFutureBuilder> {
             switch (snapshot.connectionState) {
               case ConnectionState.none:
                 return Text('Input a URL to start');
-                break;
               case ConnectionState.waiting:
                 return Center(
                   child: CircularProgressIndicator(),
                 );
-                break;
               case ConnectionState.active:
                 return Text('');
-                break;
               case ConnectionState.done:
                 if (snapshot.hasError) {
                   return Text('${snapshot.error}');
                 } else {
                   return Text(
-                      '${snapshot.data.icon} + ${snapshot.data.title} + ${snapshot.data.statusBarColor} +${snapshot.data.hideAppBar}');
+                      '${snapshot.data?.icon} + ${snapshot.data?.title} + ${snapshot.data?.statusBarColor} +${snapshot.data?.hideAppBar}');
                 }
-                break;
               default:
                 return Text('未知错误');
             }
@@ -47,7 +43,8 @@ class _HttpFutureBuilderState extends State<HttpFutureBuilder> {
   }
 
   Future<CommonModel> fetchPost() async {
-    final response = await http.get('https://www.devio.org/io/flutter_app/json/test_common_model.json');
+    final response = await http.get(Uri.parse(
+        'https://www.devio.org/io/flutter_app/json/test_common_model.json'));
     Utf8Decoder utf8decoder = Utf8Decoder();
     final result = json.decode(utf8decoder.convert(response.bodyBytes));
     return CommonModel.fromJson(result);
@@ -61,7 +58,13 @@ class CommonModel {
   final String statusBarColor;
   final bool hideAppBar;
 
-  CommonModel({this.icon, this.title, this.url, this.statusBarColor, this.hideAppBar});
+  CommonModel({
+    required this.icon,
+    required this.title,
+    required this.url,
+    required this.statusBarColor,
+    required this.hideAppBar,
+  });
 
   factory CommonModel.fromJson(Map<String, dynamic> json) {
     return CommonModel(

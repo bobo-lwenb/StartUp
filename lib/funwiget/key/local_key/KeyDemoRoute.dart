@@ -4,7 +4,7 @@ class KeyDemoRoute extends StatefulWidget {
   @override
   State<KeyDemoRoute> createState() => _KeyDemoState();
 
-  KeyDemoRoute({Key key}) : super(key: key);
+  KeyDemoRoute({Key? key}) : super(key: key);
 }
 
 class _KeyDemoState extends State<KeyDemoRoute> {
@@ -35,7 +35,7 @@ class _KeyDemoState extends State<KeyDemoRoute> {
 class Box extends StatefulWidget {
   final Color _color;
 
-  Box(this._color, {Key key}) : super(key: key);
+  Box(this._color, {Key? key}) : super(key: key);
 
   @override
   _BoxState createState() => _BoxState();
@@ -51,7 +51,7 @@ class _BoxState extends State<Box> {
       height: 100,
       color: widget._color,
       child: Center(
-        child: FlatButton(
+        child: TextButton(
           onPressed: () => setState(() => _count++),
           child: Text(
             "$_count",

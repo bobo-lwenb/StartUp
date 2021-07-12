@@ -10,10 +10,10 @@ class BaseAnimation1 extends StatefulWidget {
 class _BaseAnimation1State extends State<BaseAnimation1>
     with SingleTickerProviderStateMixin {
   // 用于保存动画的插值和状态
-  Animation<double> animation;
+  late Animation<double> animation;
 
   // 用于控制动画
-  AnimationController controller;
+  late AnimationController controller;
 
   @override
   void initState() {

@@ -5,8 +5,9 @@ class FlowPopMenuRoute extends StatefulWidget {
   State<StatefulWidget> createState() => _State();
 }
 
-class _State extends State<FlowPopMenuRoute> with SingleTickerProviderStateMixin {
-  AnimationController _controller;
+class _State extends State<FlowPopMenuRoute>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
   IconData lastTap = Icons.notifications;
   final List<IconData> menuItems = <IconData>[
     //菜单的icon
@@ -48,7 +49,8 @@ class _State extends State<FlowPopMenuRoute> with SingleTickerProviderStateMixin
   }
 
   Widget _menuItem(IconData iconData) {
-    final double buttonDiameter = MediaQuery.of(context).size.width * 2 / (menuItems.length * 3);
+    final double buttonDiameter =
+        MediaQuery.of(context).size.width * 2 / (menuItems.length * 3);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: RawMaterialButton(
@@ -74,13 +76,15 @@ class _State extends State<FlowPopMenuRoute> with SingleTickerProviderStateMixin
         lastTap = iconData;
       });
     } else {
-      _controller.status == AnimationStatus.completed ? _controller.reverse() : _controller.forward();
+      _controller.status == AnimationStatus.completed
+          ? _controller.reverse()
+          : _controller.forward();
     }
   }
 }
 
 class FlowMenuDelegate extends FlowDelegate {
-  FlowMenuDelegate({this.animation}) : super(repaint: animation);
+  FlowMenuDelegate({required this.animation}) : super(repaint: animation);
 
   final Animation<double> animation;
 
@@ -89,7 +93,7 @@ class FlowMenuDelegate extends FlowDelegate {
     var x = 50.0;
     var y = 50.0;
     for (int i = 0; i < context.childCount; i++) {
-      x = context.getChildSize(i).width * i * animation.value;
+      x = context.getChildSize(i)!.width * i * animation.value;
       context.paintChild(i, transform: Matrix4.translationValues(x, y, 0));
     }
   }

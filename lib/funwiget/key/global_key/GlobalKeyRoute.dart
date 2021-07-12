@@ -33,7 +33,8 @@ class _GlobalKeyState extends State<GlobalKeyRoute> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          final _renderBox = _globalKey.currentContext.findRenderObject() as RenderBox;
+          final _renderBox =
+              _globalKey.currentContext?.findRenderObject() as RenderBox;
           _renderBox.size;
         },
       ),
@@ -42,7 +43,7 @@ class _GlobalKeyState extends State<GlobalKeyRoute> {
 }
 
 class Counter extends StatefulWidget {
-  Counter([Key key]) : super(key: key);
+  Counter([Key? key]) : super(key: key);
 
   @override
   _CounterState createState() => _CounterState();
@@ -53,7 +54,7 @@ class _CounterState extends State<Counter> {
 
   @override
   Widget build(BuildContext context) {
-    return FlatButton(
+    return TextButton(
       onPressed: () {
         setState(() {
           _count++;

@@ -21,10 +21,10 @@ class _DemoState extends State<Demo> {
           style: TextStyle(fontSize: 20),
         ),
         SizedBox(height: 30.0),
-        FlatButton(
+        TextButton(
           onPressed: () {
             _count++;
-            globalKey.currentState.onPressed(_count);
+            globalKey.currentState?.onPressed(_count);
           },
           child: Text(
             "plus",

@@ -10,7 +10,7 @@ class TakePictureRoute extends StatefulWidget {
 }
 
 class _TakePictureRouteState extends State<TakePictureRoute> {
-  List<File> _pics = [];
+  List<PickedFile> _pics = [];
 
   @override
   Widget build(BuildContext context) {
@@ -60,9 +60,10 @@ class _TakePictureRouteState extends State<TakePictureRoute> {
 
   Future _getPic(int index) async {
     Navigator.pop(context);
-    var image = await ImagePicker.pickImage(source: index == 0 ? ImageSource.camera : ImageSource.gallery);
+    PickedFile? image = await ImagePicker().getImage(
+        source: index == 0 ? ImageSource.camera : ImageSource.gallery);
     setState(() {
-      _pics.add(image);
+      _pics.add(image!);
     });
   }
 
@@ -72,7 +73,12 @@ class _TakePictureRouteState extends State<TakePictureRoute> {
         children: <Widget>[
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
-            child: Image.file(file, width: 120, height: 100, fit: BoxFit.fill),
+            child: Image.file(
+              File(file.path),
+              width: 120,
+              height: 100,
+              fit: BoxFit.fill,
+            ),
           ),
           Positioned(
             right: 5,

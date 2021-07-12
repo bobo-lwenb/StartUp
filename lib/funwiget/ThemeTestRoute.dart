@@ -6,7 +6,7 @@ class ThemeTestRoute extends StatefulWidget {
 }
 
 class _ThemeTestRouteState extends State<ThemeTestRoute> {
-  Color _themeColor = Colors.teal;
+  MaterialColor _themeColor = Colors.teal;
 
   @override
   Widget build(BuildContext context) {

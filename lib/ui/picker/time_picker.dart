@@ -24,7 +24,7 @@ class _TimePickerState extends State<TimePicker> {
   }
 
   void _showTimePicker() async {
-    TimeOfDay timeOfDay = await showTimePicker(
+    TimeOfDay? timeOfDay = await showTimePicker(
       context: context,
       initialTime: selectTime,
     );

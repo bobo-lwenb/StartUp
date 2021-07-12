@@ -28,7 +28,8 @@ class _HttpFutureState extends State<HttpFuture> {
                 onTap: () {
                   fetchPost().then((CommonModel model) {
                     setState(() {
-                      showResult = '${model.icon} + ${model.title} + ${model.statusBarColor} +${model.hideAppBar}';
+                      showResult =
+                          '${model.icon} + ${model.title} + ${model.statusBarColor} +${model.hideAppBar}';
                     });
                   });
                 },
@@ -49,7 +50,8 @@ class _HttpFutureState extends State<HttpFuture> {
   }
 
   Future<CommonModel> fetchPost() async {
-    final response = await http.get('https://www.devio.org/io/flutter_app/json/test_common_model.json');
+    final response = await http.get(Uri.parse(
+        'https://www.devio.org/io/flutter_app/json/test_common_model.json'));
     Utf8Decoder utf8decoder = Utf8Decoder();
     final result = json.decode(utf8decoder.convert(response.bodyBytes));
     return CommonModel.fromJson(result);
@@ -63,7 +65,13 @@ class CommonModel {
   final String statusBarColor;
   final bool hideAppBar;
 
-  CommonModel({this.icon, this.title, this.url, this.statusBarColor, this.hideAppBar});
+  CommonModel({
+    required this.icon,
+    required this.title,
+    required this.url,
+    required this.statusBarColor,
+    required this.hideAppBar,
+  });
 
   factory CommonModel.fromJson(Map<String, dynamic> json) {
     return CommonModel(

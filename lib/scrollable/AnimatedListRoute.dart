@@ -2,7 +2,7 @@ import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
 
 class AnimatedListRoute extends StatefulWidget {
-  const AnimatedListRoute({Key key}) : super(key: key);
+  const AnimatedListRoute({Key? key}) : super(key: key);
 
   @override
   _AnimatedListRouteState createState() => _AnimatedListRouteState();
@@ -41,7 +41,7 @@ class _AnimatedListRouteState extends State<AnimatedListRoute> {
           String word =
               generateWordPairs().take(1).map((e) => e.asPascalCase).first;
           _data.add(word);
-          _globalKey.currentState.insertItem(
+          _globalKey.currentState?.insertItem(
             _data.length - 1,
             duration: const Duration(milliseconds: 200),
           );
@@ -58,10 +58,10 @@ class ListItem extends StatefulWidget {
   final Animation animation;
 
   ListItem({
-    Key key,
-    @required this.text,
-    @required this.index,
-    @required this.animation,
+    Key? key,
+    required this.text,
+    required this.index,
+    required this.animation,
   }) : super(key: key);
 
   @override
@@ -82,19 +82,15 @@ class _ListItemState extends State<ListItem> {
     Widget delete = GestureDetector(
       onTap: () {
         context
-            .findAncestorStateOfType<_AnimatedListRouteState>()
+            .findAncestorStateOfType<_AnimatedListRouteState>()!
             ._data
             .removeAt(widget.index);
-        context
-            .findAncestorStateOfType<AnimatedListState>()
-            .removeItem(
-          widget.index,
+        context.findAncestorStateOfType<AnimatedListState>()?.removeItem(
+              widget.index,
               (context, animation) => ListItem(
-              text: widget.text,
-              index: widget.index,
-              animation: animation),
-          duration: const Duration(milliseconds: 200),
-        );
+                  text: widget.text, index: widget.index, animation: animation),
+              duration: const Duration(milliseconds: 200),
+            );
       },
       child: Icon(
         Icons.delete_forever_rounded,

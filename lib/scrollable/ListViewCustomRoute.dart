@@ -31,7 +31,7 @@ class _MyListViewState extends State<MyListView> {
             },
             childCount: items.length,
             findChildIndexCallback: (Key key) {
-              final ValueKey valueKey = key;
+              final ValueKey valueKey = key as ValueKey;
               final String data = valueKey.value;
               return items.indexOf(data);
             },
@@ -42,7 +42,7 @@ class _MyListViewState extends State<MyListView> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            FlatButton(
+            TextButton(
               onPressed: () => _reverse(),
               child: Text('Reverse items'),
             ),
@@ -54,7 +54,7 @@ class _MyListViewState extends State<MyListView> {
 }
 
 class KeepAlive extends StatefulWidget {
-  const KeepAlive({Key key, this.data}) : super(key: key);
+  const KeepAlive({Key? key, required this.data}) : super(key: key);
 
   final String data;
 
@@ -62,7 +62,8 @@ class KeepAlive extends StatefulWidget {
   _KeepAliveState createState() => _KeepAliveState();
 }
 
-class _KeepAliveState extends State<KeepAlive> with AutomaticKeepAliveClientMixin {
+class _KeepAliveState extends State<KeepAlive>
+    with AutomaticKeepAliveClientMixin {
   @override
   bool get wantKeepAlive => true;
 
