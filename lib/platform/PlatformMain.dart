@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:startup_namer/platform/device_pixel_ratio.dart';
 import 'package:startup_namer/utils/GridViewWidget.dart';
 
 import 'AndroidViewRoute.dart';
@@ -17,6 +18,7 @@ class _PlatformMainState extends State<PlatformMain> {
     super.initState();
     list.add(ItemData('MethodChannel演示', PlatFormRoute()));
     list.add(ItemData('AndroidView简单使用', AndroidViewRoute()));
+    list.add(ItemData('Window.devicePixelRatio', DevicePixelRatio()));
   }
 
   @override
