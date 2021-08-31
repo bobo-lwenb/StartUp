@@ -11,6 +11,7 @@ import 'package:startup_namer/ui/gradient_button/GradientButtonRoute.dart';
 import 'package:startup_namer/ui/layout/custom_single_child_layout.dart';
 import 'package:startup_namer/ui/layout/layout_constraints.dart';
 import 'package:startup_namer/ui/layout/render_object/multi_render_object_demo.dart';
+import 'package:startup_namer/ui/physical_model/physical_model.dart';
 import 'package:startup_namer/ui/picker/date_picker.dart';
 import 'package:startup_namer/ui/picker/time_picker.dart';
 import 'package:startup_namer/ui/safe_area.dart';
@@ -64,6 +65,7 @@ class _UIMainState extends State<UIMain> {
     list.add(ItemData('LeafRenderObjectWidget', LeafRenderObject()));
     list.add(ItemData('SingleChildRenderObjectWidget', ShadowRenderDemo()));
     list.add(ItemData('MultiChildRenderObjectWidget', MultiRenderDemo()));
+    list.add(ItemData('PhysicalModel', PhysicalModelDemo()));
   }
 
   @override
