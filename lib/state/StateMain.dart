@@ -10,6 +10,7 @@ import 'package:startup_namer/state/how_provider_use/ValueListenableProviderRout
 import 'package:startup_namer/state/inherited_model/InheritedModelRoute.dart';
 import 'package:startup_namer/state/listenable/ValueListenableBuilderRoute.dart';
 import 'package:startup_namer/state/part_refresh/one/Demo.dart';
+import 'package:startup_namer/state/redux/redux_main.dart';
 import 'package:startup_namer/utils/GridViewWidget.dart';
 
 import 'lifecycle/StateLifecycleTest.dart';
@@ -36,11 +37,13 @@ class _StateMainState extends State<StateMain> {
     list.add(ItemData('Provider', ProviderRoute()));
     list.add(ItemData('ListenableProvider', ListenableProviderRoute()));
     list.add(ItemData('ChangeNotifierProvider', ChangeNotifierProviderRoute()));
-    list.add(ItemData('ValueListenableProvider', ValueListenableProviderRoute()));
+    list.add(
+        ItemData('ValueListenableProvider', ValueListenableProviderRoute()));
     list.add(ItemData('FutureProvider', FutureProviderRoute()));
     list.add(ItemData('StreamProvider', StreamProviderRoute()));
     list.add(ItemData('ValueListenableBuilder', ValueListenableBuilderRoute()));
     list.add(ItemData('局部刷新1', Demo()));
+    list.add(ItemData('Redux', ReduxMain()));
   }
 
   @override
