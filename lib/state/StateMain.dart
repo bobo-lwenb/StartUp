@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:startup_namer/state/Demo.dart';
 import 'package:startup_namer/state/InheritedWidgetTestRoute.dart';
+import 'package:startup_namer/state/getx/getx_main.dart';
 import 'package:startup_namer/state/how_provider_use/ChangeNotifierProviderRoute.dart';
 import 'package:startup_namer/state/how_provider_use/FutureProviderRoute.dart';
 import 'package:startup_namer/state/how_provider_use/ListenableProviderRoute.dart';
@@ -44,6 +45,7 @@ class _StateMainState extends State<StateMain> {
     list.add(ItemData('ValueListenableBuilder', ValueListenableBuilderRoute()));
     list.add(ItemData('局部刷新1', Demo()));
     list.add(ItemData('Redux', ReduxMain()));
+    list.add(ItemData('Getx', GetXDemo()));
   }
 
   @override
